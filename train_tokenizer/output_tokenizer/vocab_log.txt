@@ -1,0 +1,6 @@
+Total tokens=491388
+训练集: output_tokenizer/train.bin (393110 tokens)
+验证集: output_tokenizer/val.bin (49139 tokens)
+验证集: output_tokenizer/test.bin (49139 tokens)
+vocab_size=20000
+padded_vocab=20032

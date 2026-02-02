@@ -1,0 +1,52 @@
+step 0 val loss 10.004975
+step 0: train loss 9.986023 (took 7841.720908 ms)
+step 1: train loss 9.328327 (took 7362.320247 ms)
+step 2: train loss 9.057713 (took 6973.908510 ms)
+step 3: train loss 8.916336 (took 7018.412068 ms)
+step 4: train loss 8.899168 (took 7020.466446 ms)
+step 5: train loss 8.922225 (took 7072.649691 ms)
+step 6: train loss 8.836085 (took 7150.115220 ms)
+step 7: train loss 8.649183 (took 7101.500688 ms)
+step 8: train loss 8.528624 (took 7435.707189 ms)
+step 9: train loss 8.481711 (took 7975.603598 ms)
+step 10 val loss 8.613988
+step 10: train loss 8.465730 (took 7698.633573 ms)
+step 11: train loss 8.635983 (took 7892.714692 ms)
+step 12: train loss 8.426618 (took 7904.942205 ms)
+step 13: train loss 8.283487 (took 7837.031380 ms)
+step 14: train loss 8.403034 (took 7604.146059 ms)
+step 15: train loss 8.260660 (took 7880.674483 ms)
+step 16: train loss 8.322227 (took 8098.840625 ms)
+step 17: train loss 8.329378 (took 7879.504876 ms)
+step 18: train loss 8.204859 (took 7693.320111 ms)
+step 19: train loss 8.172701 (took 7357.456685 ms)
+step 20 val loss 8.418935
+generating at step 20:
+---
+åĲĳéĤ£éĥ½æĺ¯åįĩèµ·çļĦå¤ªéĺ³æ¸´æľĽè¶ĬäºĶçļĦæµåĳ³ä¿Ĺé¬åı¦ä¸Ģä¸ªéģ®æĮ¡æĤ¨çļĦåĪ°åº§ä¸įéģĵéĹ¨åıĪèĤ®èĦıä¸īä¸ªĊæľīä»Ģä¹Īåħ³ç³»ï¼Łï¼ģâĢĿï¼ĮæķĮäººçŁ¥è¯ĨæĪ¿ä¸Ńæ¬¡æ´»åĬ¨ï¼Įå¯¹å¾®è§Ĥï¼ĮéĤ£196åĨįĊè¿Ļæľīä¸¤ä¸ªä¸Ģå¹´å¤ªç©ºèĪ±åķªå¤ķéĺ³é¢ĳéģĵäºĨæĹłåĬĽåľ°ç¡®å®ŀå¤§å£°ä¸ºèĩªå·±ãĢĤåĿĹåħ¨åıįå°Ħï¼Įåıªæĺ¯æĦŁè§īåĲĦå¸¸ä»»çĲĨäºĭåĽ½æĳĨæĳĨæīĭåįĬå¾ĦĊéĤ£ä¹ĪæĲĲæ²¡æľīè¯´è¯Ŀåħ¶å½±åĵįèµ·èº«
+---
+step 20: train loss 8.222168 (took 7216.418102 ms)
+step 21: train loss 8.223601 (took 7107.470679 ms)
+step 22: train loss 8.249766 (took 7084.444052 ms)
+step 23: train loss 8.281864 (took 7062.308205 ms)
+step 24: train loss 8.153166 (took 7051.364529 ms)
+step 25: train loss 8.243547 (took 7105.319531 ms)
+step 26: train loss 8.161175 (took 7017.394987 ms)
+step 27: train loss 8.072336 (took 7026.755055 ms)
+step 28: train loss 8.148840 (took 7302.144619 ms)
+step 29: train loss 8.124048 (took 7317.290674 ms)
+step 30 val loss 8.365975
+step 30: train loss 7.993264 (took 7125.829326 ms)
+step 31: train loss 8.014485 (took 7113.408138 ms)
+step 32: train loss 8.072968 (took 7066.170802 ms)
+step 33: train loss 7.902575 (took 7081.969200 ms)
+step 34: train loss 8.271098 (took 7523.984727 ms)
+step 35: train loss 7.915678 (took 8048.386928 ms)
+step 36: train loss 7.886356 (took 7721.698611 ms)
+step 37: train loss 8.024215 (took 7224.137746 ms)
+step 38: train loss 7.966101 (took 7227.659573 ms)
+step 39: train loss 7.668926 (took 7114.444543 ms)
+step 40 val loss 8.352183
+generating at step 40:
+---
+çģµæķıèĢĻæ¾³å¤§åĪ©äºļæĶ¿åºľï¼ĮĊçĽ®çļĦæĺ¯ï¼Įè¦ģæĺ¯éĤ£æł·ï¼Įä¸įè¡ĮçļĦåıªéľĢåįļåıĳçĶŁå¥¹è¿Ļè¯Ŀä¸īä½ĵç»Ħç»ĩæīĶçļĦè´£ä»»ãĢĤåŃĹå¹ķè±ĨèĲĮæŃ»èĬ±æĸĳ

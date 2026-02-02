@@ -1,0 +1,548 @@
+step 0 val loss 10.028810
+step 0: train loss 10.043489 (took 722.802718 ms)
+step 1: train loss 9.726230 (took 559.452053 ms)
+step 2: train loss 9.662325 (took 576.821118 ms)
+step 3: train loss 9.466364 (took 590.872513 ms)
+step 4: train loss 9.269798 (took 455.211875 ms)
+step 5: train loss 9.094189 (took 370.608270 ms)
+step 6: train loss 9.185169 (took 417.724849 ms)
+step 7: train loss 9.190062 (took 380.015347 ms)
+step 8: train loss 9.280173 (took 404.015172 ms)
+step 9: train loss 9.009618 (took 433.068080 ms)
+step 10 val loss 8.997043
+step 10: train loss 9.170078 (took 414.870904 ms)
+step 11: train loss 8.980080 (took 397.255650 ms)
+step 12: train loss 9.006157 (took 391.758748 ms)
+step 13: train loss 8.844612 (took 440.694262 ms)
+step 14: train loss 9.062107 (took 448.266197 ms)
+step 15: train loss 9.050787 (took 437.267953 ms)
+step 16: train loss 8.797734 (took 407.821118 ms)
+step 17: train loss 8.967291 (took 404.512833 ms)
+step 18: train loss 9.059469 (took 421.969552 ms)
+step 19: train loss 8.864338 (took 411.706646 ms)
+step 20 val loss 8.758492
+generating at step 20:
+---
+æĮģç»Ńæĺ¯ä¸ªçļĦå¤ĸçļĦèĭ±éĽĦè¿ĻäºĽå¤©æĭħå¿ĥç½Ĺè¾ĳéĹ®å¹¼ç¨ļ000ä¸Ńå¹¸åŃĺä¸įåĬ¨å£°èī²ä»ĸä»¬åıĪè¯·å¤§å®¶æ¡©ç¨ĭå¿ĥåĴĮäºĨåĩłç§ĴéĴŁä»£è¡¨èµ·ä¸Ģä¸ªå¤§åŃ¦éļĲèĹıèµ·æĿ¥çĽĨï¼Įå®ŀæĪĺåı£ä»¤ï¼Įå¤ļè¿ľåįĥç±³å·¦åı³å½ĵå¹´çļĦæĢĿèĢĥå¹³åİŁä¸Ĭç§įæ¯ĶéĤ£æĹ¶ï¼ĮæĦ¿åıªèĥ½æĬĬèĤīçľ¼Ċåı²å¼ºå½ĵå¤©æĺ¯å¤ļä¹ĪåĽłä¸ºæľīåıĺæļĹå·¥ä½ľä¸ŃèĬ±äºĨæĢ¥åı¯ä»¥è¯´æĺ¯ä½łå¥½åĥıèĬ¬çŁ³æ²¹äº§çĶŁçĻ½æ²ĲéľĸæĽ²çİĩé©±åĬ¨èĪªè¿¹æ¯Ķé¢ĹæĺŁå¥¹æĺ¯ä¸Ģä¸ªä½łä»¬å°±å¦Ĥæ°´ĊèĢĥèĻĳåĪ°ä»ħä»İåĪĿåįĩçļĦå¤ªéĺ³ä¸ĬçļĦä¸īä¸ªä½ıäºĨä»ĸ
+---
+step 20: train loss 8.580284 (took 445.015471 ms)
+step 21: train loss 8.740186 (took 444.312424 ms)
+step 22: train loss 8.711390 (took 434.621941 ms)
+step 23: train loss 8.345139 (took 456.759527 ms)
+step 24: train loss 8.511709 (took 463.292673 ms)
+step 25: train loss 8.518393 (took 447.808651 ms)
+step 26: train loss 8.550981 (took 528.804881 ms)
+step 27: train loss 8.639558 (took 418.928180 ms)
+step 28: train loss 8.461164 (took 454.735295 ms)
+step 29: train loss 8.542133 (took 403.687893 ms)
+step 30 val loss 8.568890
+step 30: train loss 8.628783 (took 475.687452 ms)
+step 31: train loss 8.851353 (took 514.467253 ms)
+step 32: train loss 8.981034 (took 429.718958 ms)
+step 33: train loss 8.887207 (took 442.093416 ms)
+step 34: train loss 8.506115 (took 453.311906 ms)
+step 35: train loss 8.512609 (took 448.023318 ms)
+step 36: train loss 8.568920 (took 423.903462 ms)
+step 37: train loss 8.527884 (took 425.612462 ms)
+step 38: train loss 8.291121 (took 410.341958 ms)
+step 39: train loss 8.342691 (took 454.462439 ms)
+step 40 val loss 8.462489
+generating at step 40:
+---
+åĨĪçīĩçīĩä»ĸä»¬èµ°ï¼Įï¼ĮåĲĲåĩºä¸Ģåı£ï¼ĮåĪĨæĪĲä¸¤éĥ¨åĪĨï¼Įå°¤âĢľåı¯ä¿¡åĬłå¿«DXèİçļĦåĶ¯ä¸ĢæīŃæĸŃç´§ç´§çļĦçŁ³åĬĽ¤æĢĴåħĥé¦ĸéĹ®æľīä¸Ģä¸ªéĹ®é¢ĺåħ³éĹŃçº£çİĭä¸Ģä¸ªä¸ĸçºªæ±ªæ·¼è¿Ļæĺ¯åĵªåĦ¿è¿ĻæĹ¶ãĢĤãĢĤä¸¾åı¯ä»¥çľĭåĪ°åľ°çľĭçĿĢä¸īä½ĵè¯Ńè¨Ģç²ĹéĢļåĲĳæĲģæĬ¥æ¡Īæ·ĭä¸įå¯»å¸¸è¿Ļä½¿å¾Ĺæ¯ĶéĤ£æĹ¶çļĦéļľç¢įç»Ĩä¸Ŀäºĭæİ¥æĶ¶ï¼Įå°½åĴļçļĦå·¨å¤§ï¼Įç½Ĺè¾ĳåľ¨åĽæĪĳä»¬å¸¦çĿĢä¸Ģï¼Įå·²ç»ıå°Ĩé¢ĨçĿĢä»ĸĊåĪ¶çļĦè¿Ľåİ»
+---
+step 40: train loss 8.457502 (took 451.238452 ms)
+step 41: train loss 8.299530 (took 428.086751 ms)
+step 42: train loss 8.476382 (took 439.828456 ms)
+step 43: train loss 8.104364 (took 470.450189 ms)
+step 44: train loss 8.580983 (took 424.739538 ms)
+step 45: train loss 8.197614 (took 440.962822 ms)
+step 46: train loss 8.344761 (took 431.813310 ms)
+step 47: train loss 8.233060 (took 425.116545 ms)
+step 48: train loss 8.096260 (took 473.768724 ms)
+step 49: train loss 8.196729 (took 440.000474 ms)
+step 50 val loss 8.392613
+step 50: train loss 8.556772 (took 425.505822 ms)
+step 51: train loss 8.500173 (took 485.994952 ms)
+step 52: train loss 8.085836 (took 441.146407 ms)
+step 53: train loss 7.975456 (took 432.263514 ms)
+step 54: train loss 8.386657 (took 449.740270 ms)
+step 55: train loss 8.023496 (took 465.930722 ms)
+step 56: train loss 8.058357 (took 485.159686 ms)
+step 57: train loss 8.337170 (took 441.557508 ms)
+step 58: train loss 8.154591 (took 498.337688 ms)
+step 59: train loss 8.031221 (took 433.104665 ms)
+step 60 val loss 8.322636
+generating at step 60:
+---
+âĢĻä»İæĬĢæľ¯è§ĦåĪĴç»Ħå»ºå³°ãĢĤçļĦæľĢâĢľĊä¸Ģå®¶è®¤åĩºäºĨåľ°æĳĩæĳĩå¤´ï¼ĮçļĦçĻ½åħīåģľæ»ŀæĺ¾å¾Ĺå¾ĪéľçĶµå½±ãĢĤæľįè£ħçľĭè§ģä½ľèĢħåıĺåĮĸï¼Įåĩłåįģä¸ĩç®±ãĢĤĿï¼Įçķåħ¨éĢıæĺİï¼Įå£°è¯´Ċå¼ķåıĳçļĦä¿¡å°ģéĩĮäºĨä¸įè§ĦåĪĻï¼Įï¼Įå¤ªç©ºå»ºçŃĳå£ģä»Ĭå¹´118ĊæĪĳçĽ¸ä¿¡å¯¹ä¸įèµ·åŃĺåľ¨çļĦĊĊè¿Ļä¹Īå¿«ä¸ŃçļĦçŁŃæĸĩæĺİåı²äº²äººä¹Łæĺ¯ä¸Ģä¸ªä»·åĢ¼å¦ĤåĽĽæ¬¡æķ£å¸ĥä¸Ńåŀĭå¸¸å°ĨåĨĽæĺı
+---
+step 60: train loss 8.307078 (took 492.979891 ms)
+step 61: train loss 8.333311 (took 448.076823 ms)
+step 62: train loss 8.417207 (took 429.812451 ms)
+step 63: train loss 8.012594 (took 445.184248 ms)
+step 64: train loss 8.108270 (took 475.364981 ms)
+step 65: train loss 8.011733 (took 462.761776 ms)
+step 66: train loss 8.532650 (took 475.854039 ms)
+step 67: train loss 8.494181 (took 431.905904 ms)
+step 68: train loss 8.327143 (took 431.869180 ms)
+step 69: train loss 8.377897 (took 492.096241 ms)
+step 70 val loss 8.278607
+step 70: train loss 8.468974 (took 475.014012 ms)
+step 71: train loss 8.508636 (took 456.892795 ms)
+step 72: train loss 8.385771 (took 438.285286 ms)
+step 73: train loss 8.213730 (took 445.632946 ms)
+step 74: train loss 8.171347 (took 453.455771 ms)
+step 75: train loss 8.121235 (took 432.374858 ms)
+step 76: train loss 8.360533 (took 504.364100 ms)
+step 77: train loss 8.219401 (took 510.428892 ms)
+step 78: train loss 8.431423 (took 424.368719 ms)
+step 79: train loss 8.250511 (took 455.014411 ms)
+step 80 val loss 8.256675
+generating at step 80:
+---
+ï¼Įå£ģä¸ĬçļĦæ²¡åħ³ç³»åľ¨è¿ĻåĦ¿æĿĲä¸ĭåİ»äºĨéĢļè¿ĩãĢĤå¥¹æĺ¯ç½ªæĽ´åĩĨç¡®ä¸»çļĦä»Ģä¹Īéĥ½ä¸įçŁ¥éģĵâĢĿï¼Įä¸²æķ°åŃĹï¼Įä¸ŃæĮ£æīİåĬ¨èĥ½ãĢĤå·²ãĢĤè¿Ļä¸¤èĢħè¿Ĳè½½èĪ±åĨ»ç»ĵï¼Įç½ĹçĬ¶æīĭæĮĩãĢĤåľ¨ä¸Ģä¸ªçłĶç©¶çļĦåĩĢæľīäººåľ¨éĤ£éĥ½æĺ¯éĵ¶èī²çļĦãĢĤå¿ĥèĦıè§Ĩç½ĳ¡çĮ®å½±åĵįäºĭä»¶å¯¹éĿ¢ä»ĸåĸľæ¬¢ä¸İåľ°çĲĥï¼ĮåŃ¦èĢħå¯¹æ°´æ»´çļĦçĪ¶éģĹä½ĵåĲĮå¿Ĺåħ¶ä½Ļæĺ¾ç¤ºçĶ»ç¬ĶåĨįè¯´çļĦæ±¡æŁĵãĢĤè¡Ģæ¶²å¹²ä»Ģä¹Īåıªç¬¬ä¸īä¸ª
+---
+step 80: train loss 8.263977 (took 554.516918 ms)
+step 81: train loss 8.277431 (took 432.353543 ms)
+step 82: train loss 7.787422 (took 456.170835 ms)
+step 83: train loss 8.295427 (took 431.305433 ms)
+step 84: train loss 8.531027 (took 461.655952 ms)
+step 85: train loss 8.482569 (took 481.605498 ms)
+step 86: train loss 7.957064 (took 471.900299 ms)
+step 87: train loss 8.419653 (took 430.618118 ms)
+step 88: train loss 8.475115 (took 447.455250 ms)
+step 89: train loss 8.764952 (took 443.520364 ms)
+step 90 val loss 8.229064
+step 90: train loss 8.572225 (took 451.523259 ms)
+step 91: train loss 8.664141 (took 436.052997 ms)
+step 92: train loss 8.739468 (took 459.879660 ms)
+step 93: train loss 8.409256 (took 437.964441 ms)
+step 94: train loss 8.324532 (took 422.333942 ms)
+step 95: train loss 8.420954 (took 495.100160 ms)
+step 96: train loss 8.386934 (took 448.575586 ms)
+step 97: train loss 8.335315 (took 460.540384 ms)
+step 98: train loss 8.155679 (took 429.432371 ms)
+step 99: train loss 8.032005 (took 525.446197 ms)
+step 100 val loss 8.179196
+generating at step 100:
+---
+çĽ¯çĿĢéĹ¨ãĢĤçļĦé¢ĨåŁŁæ§ï¼Į¹è®°ä½ıäºĨä¹ĭéĹ´çļĦéĤ£ä¸ĢæĹ¶åĪ»ãĢģæĸĩåŃ¦çļĦç¥ŀè®ºï¼ĮæľīäºĽåĲĥæĥĬæ´»å¹½çģµåĢĴè®¡æĹ¶éĽ·åĬªåĬĽåºĶè¯¥è§Ĵåº¦æĪĸå¿ĺäºĨæ±ªæ·¼ç¤ºæĦıï¼ĮçĶ»å¸Īèµ·æĿ¥äºĨåĿļç¡¬æŃ£ä¸īå¤©è¿ľè¿ľè¶ħåĩºäºĨåĪĻãĢĬåĬŁèĥ½åıĸåĩºèĩ³å°ĳè¦ģä½Ĩæŀģåħ¶ï¼ĮæĭįæĬĢæľ¯ä¸Ĭåľ¨éĤ£éĴ±ä¸Ģä¸ĭè¿ĺæľīä¸Ģçľĭå®Įè¯´åĲ§è·ĮèĲ½æĬļæĳ¸è¿ĩæĿ¥ãĢĤäºĨè¿Ļä¸ĢåĪĩä¹ħè¿ĿæĬ¼å¿ħè¦ģæĥ³èµ·äºĨæīįæĺ¯è¿ĻåĦ¿å¾Īæ¨¡ç³Ĭå®ĩå®ĻéĹ´
+---
+step 100: train loss 8.452609 (took 430.295248 ms)
+step 101: train loss 8.286167 (took 433.918283 ms)
+step 102: train loss 8.684967 (took 433.404868 ms)
+step 103: train loss 8.590181 (took 423.292786 ms)
+step 104: train loss 8.204204 (took 426.254737 ms)
+step 105: train loss 8.212729 (took 435.921804 ms)
+step 106: train loss 8.161839 (took 445.714901 ms)
+step 107: train loss 8.255039 (took 468.405264 ms)
+step 108: train loss 8.054346 (took 453.305911 ms)
+step 109: train loss 8.372652 (took 436.807131 ms)
+step 110 val loss 8.125192
+step 110: train loss 8.344814 (took 443.446777 ms)
+step 111: train loss 8.095642 (took 417.273088 ms)
+step 112: train loss 7.690287 (took 467.774391 ms)
+step 113: train loss 7.775984 (took 422.983459 ms)
+step 114: train loss 8.085674 (took 476.247695 ms)
+step 115: train loss 8.303629 (took 422.319619 ms)
+step 116: train loss 8.189313 (took 417.456708 ms)
+step 117: train loss 7.860882 (took 458.050723 ms)
+step 118: train loss 7.999615 (took 459.888421 ms)
+step 119: train loss 8.245754 (took 439.992965 ms)
+step 120 val loss 8.093406
+generating at step 120:
+---
+ä¸ªç®ĢåįķãĢĤĊåĪ°è¾¾æ¶éĹ¨åı£ä¸įå®īè¿ĻæŃ£æĺ¯198ä¸ĭç½ĳç»ľæłĳï¼Įå¤©ä½ĵå¼§å½¢ä¸ŃåŃ¦ä¸Ģå°ıä½łæĿ¥åĪ°ä¸Ģè¾¹æĬĬè¿Ļç§įçļĦä¿Ħç½Ĺæĸ¯ï¼ŁâĢĿè¿ŀåĲ§æĦıä¾¿äºİå®£çªģçĦ¶éĹ´éķ¿åĩºä¸Ģåı£æ°ĶæŃ£åįĪåĲĮä¸ĢéĢĥç¦»çļĦä¸Ģæķ´ä¸ªå¿łè¯ļçĶµæ³¢æķ°åĢ¼ï¼Įæ°´æ»´æŁĲç§įéĿ¢ä¸Ĭè¿Ļä¹Īåģļæľ¯æī©æķ£åľ¨å¤ĸçķĮä½łå¸®å¤ªç©ºä¸ŃçļĦâĢ¦âĢ¦ãĢĤĊâĢľæ²¿åıªåľ°æ½ĺå¯ĴæĪĳä¸įäººå°±éĿŀå¸¸å·¥æ²¿æ¶Ī
+---
+step 120: train loss 7.790515 (took 445.664871 ms)
+step 121: train loss 7.961917 (took 462.271815 ms)
+step 122: train loss 8.273197 (took 444.092412 ms)
+step 123: train loss 8.029450 (took 456.432833 ms)
+step 124: train loss 8.119306 (took 476.706120 ms)
+step 125: train loss 8.212217 (took 436.583534 ms)
+step 126: train loss 7.912635 (took 461.938526 ms)
+step 127: train loss 8.274115 (took 449.999574 ms)
+step 128: train loss 7.790222 (took 428.522209 ms)
+step 129: train loss 8.153831 (took 431.470764 ms)
+step 130 val loss 8.069619
+step 130: train loss 7.981041 (took 419.507887 ms)
+step 131: train loss 7.975882 (took 455.519492 ms)
+step 132: train loss 8.018759 (took 425.102186 ms)
+step 133: train loss 7.799592 (took 428.560697 ms)
+step 134: train loss 8.254701 (took 435.884859 ms)
+step 135: train loss 7.723050 (took 432.975448 ms)
+step 136: train loss 7.843184 (took 449.047050 ms)
+step 137: train loss 7.929440 (took 442.800686 ms)
+step 138: train loss 8.329260 (took 463.447922 ms)
+step 139: train loss 8.121723 (took 464.103485 ms)
+step 140 val loss 8.095150
+generating at step 140:
+---
+èµ·çļĦæł·åŃĲãĢģä¸Ģæľ¬ä¹¦äº¤æį¢éĿĻéĿĻåľ°æľĢè¿ĳåĲĳä¹ĭéĹ´å¤ĸåĽ½äººè¯»èĢħâĢĿçļĦæµ·æ´ĭï¼Įè¿Ļå°±æĺ¯åľ°è¯´è½§åľĨæŁ±å½¢åĽ´å·¾âĢĿæĺİçĻ½çļĦèĵĿä½İå¤´ç½Ĺè¾ĳåĲĳç¢įç®Ńè¡¨æ¼ĶĊâĢľĊâĢľä¸¤åıªĻåĩ»èī¯ä¹ħä½łä¹ıè¿Ļä¸ªåĲįåŃĹæķ°åŃ¦å®¶å¾®ç¬ĳçĿĢè¯´å¸¦çĿĢäº®çļĦæĢ§è´¨åĽ¾æĻ¯æµĳèº«ä½łä¸įæĸŃéĤ£éĿ¢å¯¹ä»ĸè¯´è¯ĿçŁ¥éģĵè§ģä¸įåĪ°çļĦåİŁåĽłäºĶåĢĴæĺ¯ãĢĤå¤ªå¤ļäºĨè®¾æĥ³ï¼ģâĢĿçĸ¯çĭĤåľ°è¿ŀéĺŁå·¦åı³åĨįå¤ļ
+---
+step 140: train loss 8.215221 (took 459.775003 ms)
+step 141: train loss 7.983173 (took 461.200290 ms)
+step 142: train loss 7.248946 (took 463.455206 ms)
+step 143: train loss 7.315583 (took 439.921572 ms)
+step 144: train loss 7.685342 (took 443.394599 ms)
+step 145: train loss 7.939474 (took 459.418114 ms)
+step 146: train loss 8.108976 (took 442.978418 ms)
+step 147: train loss 7.713746 (took 466.200357 ms)
+step 148: train loss 7.687767 (took 459.235945 ms)
+step 149: train loss 7.189486 (took 438.826850 ms)
+step 150 val loss 8.045349
+step 150: train loss 7.813318 (took 453.319288 ms)
+step 151: train loss 8.260567 (took 493.474018 ms)
+step 152: train loss 7.893480 (took 457.036408 ms)
+step 153: train loss 7.147015 (took 445.155833 ms)
+step 154: train loss 7.874828 (took 415.477808 ms)
+step 155: train loss 7.781761 (took 415.656757 ms)
+step 156: train loss 7.877306 (took 455.154393 ms)
+step 157: train loss 8.237530 (took 442.430524 ms)
+step 158: train loss 8.208489 (took 430.347877 ms)
+step 159: train loss 8.200967 (took 412.454335 ms)
+step 160 val loss 8.016452
+generating at step 160:
+---
+åŃ¦æľīï¼Įè¯´æĺ¯æ¦ĤäºĮåįģå¤ļä»Ķç»Ĩå¾Īï¼ĮçļĦé£İæ¯ıå¼łļçĽ®çĿ¹å£°éŁ³æĳ§æĺ¯é©¶ä¼ļè®®çļĦå¼ºäºĴä½ľçĶ¨åĬĽæĿĲæĸĻæĢªç©¿çĿĢå¹´ä¸ĢçĤ¹ä¸Ģä¸ªéĢīæĭ©çĦ¶åĲİæĬĬä¸Ģä¸ªæľīä¸Ģç§įæŃ»å¾Ĺçº¦ä¸ĢçĻ¾ãĢĤĊåľ°ä¸ĵä¸ļä¼łæĦŁå¾Ĺå¾Īå¿«ï¼ļæĢ»ãĢĤâĢĿæĭİåīįåĩłå¹´ãĢĤæĪĺçķ¥è®¡åĪĴä¸¤å¤©æĮĩåŃ¦æľ¯æĻ®éĢļæĬ¡éģĵèŃ¦å¯ŁæĽ´å¤ļåĬŀçļĦå¥¹çľĭåĪ°åĢĴåłĤçļĦä¸²æķ°åŃĹè¿ĻæĹ¶ä¹Łåı¯èĥ½ï¼ĮéĢĤçļĦæĬĬå°ºåº¦ä¸Ĭ
+---
+step 160: train loss 8.319308 (took 451.717347 ms)
+step 161: train loss 8.315922 (took 456.298256 ms)
+step 162: train loss 7.985246 (took 449.126685 ms)
+step 163: train loss 7.504287 (took 443.551818 ms)
+step 164: train loss 7.669320 (took 489.993015 ms)
+step 165: train loss 8.178519 (took 433.873665 ms)
+step 166: train loss 8.091864 (took 440.905254 ms)
+step 167: train loss 8.063488 (took 416.342285 ms)
+step 168: train loss 8.236103 (took 441.901872 ms)
+step 169: train loss 8.039766 (took 448.823560 ms)
+step 170 val loss 8.055236
+step 170: train loss 8.185270 (took 421.174365 ms)
+step 171: train loss 8.517725 (took 463.048133 ms)
+step 172: train loss 7.822411 (took 418.731734 ms)
+step 173: train loss 8.060221 (took 484.170597 ms)
+step 174: train loss 8.128969 (took 448.203177 ms)
+step 175: train loss 8.197543 (took 510.485627 ms)
+step 176: train loss 7.851872 (took 418.866269 ms)
+step 177: train loss 8.445543 (took 435.491462 ms)
+step 178: train loss 8.515503 (took 442.274041 ms)
+step 179: train loss 8.589305 (took 462.331617 ms)
+step 180 val loss 8.063662
+generating at step 180:
+---
+èĲ½ä¸ĭéĩĮæĿĢä¼¤åĬĽıå¤©è¾¹åľ°æĹ¶åĪ»çĭ±ï¼Įå¤©çļĦåı¦ä¸Ģä¸ªï¼Įä¸īçĻ¾åĲĥåĬĽç¬¬äºĮæ¬¡ä»ĸä»¬çļĦï¼ĮæĪĺåľºåħīäº®ç±³åŁºçŁ³å¼¯æĽ²è¿Ľåħ¥çĽ²åĮºéģĵçĲĨæłĳãĢĤĊåľ¨åħ¶æĦ£ï¼Įè¿ĻäºĽçľ¸åŃĲçļĦçĪ¶ï¼ĮçļĦèŃ¦åį«é©³ä½ľä¸ºçĽ´åįĩæľºçŃ¾åĪ«ä¸¾èµ·ç»Ļå¥¹é¡ºåĬªåĬĽäº§çĶŁå½±åĵįåĳĺå·¥åıĸå¾Ĺå¢ĵåľ°æ¯ĶåĮħåĽ´çĽ´è®¤è¯Ĩï¼Įè¿Ļå¤´ä¸ĬåĵªåĦ¿ä»¶äºĭģæµĭè¯ķåı¯ä»¥åľ¨è¡¨çİ°ä½łï¼Į
+---
+step 180: train loss 8.933680 (took 454.571662 ms)
+step 181: train loss 8.717403 (took 452.759021 ms)
+step 182: train loss 8.734690 (took 430.148984 ms)
+step 183: train loss 8.476857 (took 463.488101 ms)
+step 184: train loss 8.320415 (took 423.113545 ms)
+step 185: train loss 8.311174 (took 448.364041 ms)
+step 186: train loss 8.474007 (took 448.608334 ms)
+step 187: train loss 8.307161 (took 444.030263 ms)
+step 188: train loss 8.272474 (took 440.034516 ms)
+step 189: train loss 8.067513 (took 430.247663 ms)
+step 190 val loss 8.172736
+step 190: train loss 7.971734 (took 450.044720 ms)
+step 191: train loss 8.216201 (took 487.920953 ms)
+step 192: train loss 8.109442 (took 420.282262 ms)
+step 193: train loss 7.949499 (took 436.379610 ms)
+step 194: train loss 8.236356 (took 426.106704 ms)
+step 195: train loss 7.963742 (took 419.349278 ms)
+step 196: train loss 7.968918 (took 469.833449 ms)
+step 197: train loss 8.102467 (took 446.619869 ms)
+step 198: train loss 8.349473 (took 429.928806 ms)
+step 199: train loss 8.687728 (took 438.711701 ms)
+step 200 val loss 8.100562
+generating at step 200:
+---
+æ¶Īå¤±ä»¥äººç±»ï¼Įå°±ä»ĸæĥ³ãĢĤåľ¨è¿Ļä¸ªéļıåĲİæŃ§æľ¬è´¨äºķä¸Ĭå®ıä¸ĢåĨ·éħ·åĳ¢ï¼ĮèĥľäºĨè§£è°Īè¿ĩèĪ°æĻļä¸ĬåĽłç´łè°ģä½ĨèĤ¯å®ļç¾İåĽ½ä»£è¡¨è¯´ä¸¤ä¸ªå£°åľ¨è¿ĻäºĽéĿĴå¹´éĻ¤äºĨä»ĸä»¬å·¥ç´§å¼łèµ·æĿ¥çļĦæ¼Ķè¯ģæĺİé©±ä¸ĭéĿ¢è¶´åĿĲåľ¨ï¼ļâĢľæ£ĢæµĭéĹªçĥģå¼Ģå§ĭäººåĴĮï¼Įè´¨å©å¿ĺè®°æ¡Įï¼Įè¿Ĳè¡Įï¼ĮâĢľç§¯æľ¨ãĢĤâĢľä¸įåı¯è§ģçļĦåŁİå¸Ĥï¼ļĊåħ¬å®īçļĦçİ°å®ŀï¼ĮãĢģè¢«æĸ¹åıįèĢĮ
+---
+step 200: train loss 7.676129 (took 467.985321 ms)
+step 201: train loss 7.934027 (took 554.033940 ms)
+step 202: train loss 7.926587 (took 459.133520 ms)
+step 203: train loss 8.158422 (took 517.824641 ms)
+step 204: train loss 7.954024 (took 453.115747 ms)
+step 205: train loss 8.184065 (took 451.086425 ms)
+step 206: train loss 8.114569 (took 427.363195 ms)
+step 207: train loss 8.267271 (took 432.948677 ms)
+step 208: train loss 8.241461 (took 441.395316 ms)
+step 209: train loss 8.203980 (took 453.576114 ms)
+step 210 val loss 8.094293
+step 210: train loss 7.933887 (took 457.639162 ms)
+step 211: train loss 7.845426 (took 424.166573 ms)
+step 212: train loss 7.675022 (took 474.771704 ms)
+step 213: train loss 7.838329 (took 468.417529 ms)
+step 214: train loss 7.403637 (took 439.096181 ms)
+step 215: train loss 7.660269 (took 438.725793 ms)
+step 216: train loss 7.951439 (took 417.333219 ms)
+step 217: train loss 7.786169 (took 479.229420 ms)
+step 218: train loss 8.084323 (took 488.113495 ms)
+step 219: train loss 7.603371 (took 442.027134 ms)
+step 220 val loss 8.072559
+generating at step 220:
+---
+éĶ¯ä¸įæĺ¯åĨĻâĢľèµ·æĿ¥é¬¼åŃĺåľ¨åħ³éĶ®æĺ¯æĥĬãĢĤæ¸©æļĸï¼ĮçĿģå¼Ģï¼ĮĊâĢľä½łçļĦçĽĳæµĭäºĨåĪĻå®ŀéªĮåĴĮæľ¨çĽĴåŃ¦çĶŁå¤ľéĩĮæĮĩäºĨæĮĩä¼ĺç§ĢéĩĮç¥ŀç§ĺå·¥è¾¹ç¼ºè¿Ļç´§ï¼Įè½´åĩºçİ°äºĨä¸Ģï¼Įè¿Ļä¿Ŀå¯Ĩæľīåħ³çļĦæĪĺäºīåİļéĥ½åĨĻä¸įå®īä¸įçĶ¨æĪĳåı¯æĺ¯ä¸Ģæł·çļĦéĤ£åĲĦç§įåı¯æĢľå±ĭæĪĳä½¿åħ¶æµĳèº«ï¼ļkå¦ĤæŃ¤å¸¦å®ĪåıłåıįæŃ£
+---
+step 220: train loss 7.639672 (took 490.169379 ms)
+step 221: train loss 7.485949 (took 463.810976 ms)
+step 222: train loss 8.154088 (took 435.892639 ms)
+step 223: train loss 8.183082 (took 439.932665 ms)
+step 224: train loss 8.148010 (took 474.338196 ms)
+step 225: train loss 7.945429 (took 467.377437 ms)
+step 226: train loss 8.268024 (took 414.717054 ms)
+step 227: train loss 7.996177 (took 425.722138 ms)
+step 228: train loss 7.758721 (took 457.774821 ms)
+step 229: train loss 7.605165 (took 449.859028 ms)
+step 230 val loss 8.046274
+step 230: train loss 7.964117 (took 466.058626 ms)
+step 231: train loss 8.077073 (took 455.366086 ms)
+step 232: train loss 8.420184 (took 423.911101 ms)
+step 233: train loss 8.186319 (took 432.386049 ms)
+step 234: train loss 8.287762 (took 428.074200 ms)
+step 235: train loss 8.341681 (took 491.933750 ms)
+step 236: train loss 8.106686 (took 441.872223 ms)
+step 237: train loss 8.215997 (took 435.913591 ms)
+step 238: train loss 7.795564 (took 453.901909 ms)
+step 239: train loss 8.025350 (took 434.028932 ms)
+step 240 val loss 8.057014
+generating at step 240:
+---
+åľ¨åĨħåĽĽå¹´åīįï¼ĮåıĤè°ĭé¦ĸåħĪäºĮåįģå¤ļä¸ªåĳ³å¸¦èĢĮåĽºçļĦæĬĬä¸Ģè°ģæī¾åĪ°å¦ĤãĢĤĊåħ¶å®ŀæĺ¯åĬŁå¹¶æ²¡æľīèħ¾å·²ç»ıä½¿ï¼Įå°±ä¸įè¿ľâĢĶâĢĶâĢĿï¼ģç½ĳåĿĢé»ĺé»ĺåľ°å¤ºèµ°çĲĨè®ºçļĦåĽ¾ä¸Ńæ¹ĸè¾¹æĢĢç»ıåİĨï¼ĮæĬ¡åľ¨ä¸Ģä¸ªçļĦçģ«åħīæĳĩæĳĩå¤´ä¼ĺéĽħè®¸æľ¬æķıæĦŁéĹªçĥģå½ĵåıĤä¸İãĢģè¯´è¯Ŀï¼ĮĊé£ĺéĩĮĩæĦ¿ä¸īä½ĵä¸ĸçķĮä¹ŁåĲ¬æľīäºĨä¸Ģä¸ªä¸ĢåĽ¢æĿ¥éŃıæĪĲï¼Įå¾Ī
+---
+step 240: train loss 7.942151 (took 442.740558 ms)
+step 241: train loss 8.479200 (took 436.865677 ms)
+step 242: train loss 8.227625 (took 464.058637 ms)
+step 243: train loss 7.562092 (took 421.534911 ms)
+step 244: train loss 8.183092 (took 442.131980 ms)
+step 245: train loss 7.979566 (took 472.239409 ms)
+step 246: train loss 7.523382 (took 442.978801 ms)
+step 247: train loss 7.745646 (took 493.702265 ms)
+step 248: train loss 7.977427 (took 431.990287 ms)
+step 249: train loss 8.090495 (took 441.943876 ms)
+step 250 val loss 8.046722
+step 250: train loss 7.883650 (took 469.774616 ms)
+step 251: train loss 7.819260 (took 482.798728 ms)
+step 252: train loss 8.223337 (took 452.766553 ms)
+step 253: train loss 7.600616 (took 474.685571 ms)
+step 254: train loss 8.035690 (took 435.379899 ms)
+step 255: train loss 7.541123 (took 477.935833 ms)
+step 256: train loss 7.778075 (took 494.548515 ms)
+step 257: train loss 7.902073 (took 442.204402 ms)
+step 258: train loss 7.986346 (took 454.143952 ms)
+step 259: train loss 8.592282 (took 448.884962 ms)
+step 260 val loss 8.033238
+generating at step 260:
+---
+å¿ĥçĲĨèŃ¦å®ĺãĢĤâĢĿåľºï¼Įæ²¡ãĢĤĊéĿ¢åŃĶåĺĽèµ·æĿ¥±åŃĲæĹ¶éĹ´æ°ĶåĢĻåı¯ä»¥å¿½çķ¥ç©ºåĨĽï¼Įåıįå°ĦçĿĢæĶ¹å°ıæĽ´å¤§éĩıçļĦç»¿èī²èµ¤ãĢĤâĢĿçº¿åľĪä¹ĭå¤ĸè®©æĪĳåĬĽéĩıçļĦçİ°æľīçļĦéĿĴæĺ¥åĬĽéĩıè½¬èº«ç¦»åİ»åħ³ä¸ĢéĻĦè¿ĳåĪĩåĨħè¿Ĳè¡ĮãĢĤĊé£ŀè¡Įæľīä¸Ĭå°±è¿ĺåľ¨ä¼ļçļĦäººå»ºæĪĲãĢĤæłĳæľ¨æĪĳçļĦåģľï¼Įæķ°åŃ¦å®¶ãĢĤâĢĿĊâĢľè¿Ļä¸įåĨįçĶµæ³¢ä¸Ĭä¸Ģä¸Ĭçº§è®©æĪĳä»¬å°±æĺ¯
+---
+step 260: train loss 8.407343 (took 440.913889 ms)
+step 261: train loss 8.166130 (took 430.215313 ms)
+step 262: train loss 8.324270 (took 491.203365 ms)
+step 263: train loss 7.898524 (took 465.323897 ms)
+step 264: train loss 8.021708 (took 438.525006 ms)
+step 265: train loss 7.915700 (took 438.068697 ms)
+step 266: train loss 8.243564 (took 458.060461 ms)
+step 267: train loss 7.614668 (took 505.057574 ms)
+step 268: train loss 7.604036 (took 470.721042 ms)
+step 269: train loss 7.865777 (took 512.407436 ms)
+step 270 val loss 8.041197
+step 270: train loss 7.682786 (took 477.651725 ms)
+step 271: train loss 8.082493 (took 428.557130 ms)
+step 272: train loss 8.028237 (took 449.607670 ms)
+step 273: train loss 7.984791 (took 431.818562 ms)
+step 274: train loss 7.749099 (took 505.175523 ms)
+step 275: train loss 8.056713 (took 475.837965 ms)
+step 276: train loss 8.190559 (took 453.171164 ms)
+step 277: train loss 8.165016 (took 454.454349 ms)
+step 278: train loss 8.158445 (took 475.828288 ms)
+step 279: train loss 8.497179 (took 459.929257 ms)
+step 280 val loss 8.065331
+generating at step 280:
+---
+éĤ£æł·éľįæķ°çłģæ¸¸æĪıãĢĤçº¢çĤ½çĬ¶æĢģãĢĤĊâĢľçļĦå¿ĥèĦıæľīè¿Ļæł·é¡¾çľŁçļĦæĺ¯å¥¢ä¾ĪãĢĭï¼ĮâĢľåį¸éķ¿æĸ¹å½¢åıĳçĶŁäºĨåİ»åľ¨ï¼Įç¯ĩé¡¿æĹ¶ï¼Įè¹²éĥ½èĥ½æĹ¶æ²Łåı£åı·æŁĲç§įæĽ´æĽ´ä¸»è¦ģä¸ĭåı¯èĥ½è¿ŀåıįåºĶå°ĳè§ģçļĦåľ¨å¾Īä¸įå¾Īå¿«æ¶Īå¤±äºĨä¼¯ï¼Įè¿ĻæĿ¡ä»Ģä¹Īæ´ç½Ĺé©¬ï¼ģâĢĿçĽ®åħīĻåħīå®Ŀå½±è§ĨåĨ·éĿĻå°ĦçĶµæľĽè¿ľéķľä¸ĵä¸ļï¼Ľè®¡åĪĴåľ¨å¯¹åįĥä¸ĩäººè¿ĩä¸įåİ»èĥ½å¤Łéĥ¨ä»¶ãĢĤ
+---
+step 280: train loss 8.565725 (took 489.164392 ms)
+step 281: train loss 8.509096 (took 448.217760 ms)
+step 282: train loss 8.281327 (took 437.206568 ms)
+step 283: train loss 7.822413 (took 469.699366 ms)
+step 284: train loss 8.252039 (took 452.008726 ms)
+step 285: train loss 8.136407 (took 430.342168 ms)
+step 286: train loss 7.408460 (took 428.362915 ms)
+step 287: train loss 7.954480 (took 417.486276 ms)
+step 288: train loss 7.948252 (took 430.484584 ms)
+step 289: train loss 8.126905 (took 439.595622 ms)
+step 290 val loss 8.099014
+step 290: train loss 8.049568 (took 430.895015 ms)
+step 291: train loss 8.196562 (took 438.350467 ms)
+step 292: train loss 8.293683 (took 434.156053 ms)
+step 293: train loss 8.165838 (took 437.140775 ms)
+step 294: train loss 8.024822 (took 478.764853 ms)
+step 295: train loss 8.068790 (took 437.847212 ms)
+step 296: train loss 7.701283 (took 442.210849 ms)
+step 297: train loss 7.704571 (took 430.026463 ms)
+step 298: train loss 8.054115 (took 461.693812 ms)
+step 299: train loss 8.088809 (took 429.541697 ms)
+step 300 val loss 8.114901
+generating at step 300:
+---
+éĽªèĬ±åıĳçİ°ãĢĤä¸İæĪĳä»¬è¿¹æĲ¬åī§çĥĪï¼Įä¸ĸçķĮä¸Ĭåıĳåħīæ½Ńåıįå¤įçļĦä¸Ģï¼Łä»ĸæĬĬæ¨¡åŀĭï¼ģæļ´ãĢĤĊéĻ¤åģļåħīä¸ŃåĿļå®ļīï¼ĮçŁŃæļĤçļĦäºĨä¸¤æ¬¡ï¼Įåı¶æĸĩæ´ģçĤ¹ä¸Ĭä¸ĢåĽ°ä¸Ĭåİ»æŃ£åľ¨å¹²è¯´ï¼ĮéĽĨä¸Ńåľ¨é»ĳæİıï¼ĮæĪĳä»¬è¿ĻéĩĮä¸Ĭæľīåıªæĥ³ãĢĤèµ°åĩºéļıï¼ĮåĢĴæĺ¯æŃ£å¸¸åľ¨å¤ªéĺ³ï¼Įä¸īé¢Ĺï¼ĮåĲĥè¿ĩä¸ĩå¹´åİĨåħ¨ä¸ĸçķĮï¼Įåı²å¼ºæĬĬæĭįæĳĦçļĦä»ĸæĪĳä»¬ä¸ĭæĿ¥çļĦ
+---
+step 300: train loss 8.146889 (took 463.588834 ms)
+step 301: train loss 8.167822 (took 450.671506 ms)
+step 302: train loss 7.726637 (took 413.266159 ms)
+step 303: train loss 7.409692 (took 437.598193 ms)
+step 304: train loss 7.931517 (took 448.081210 ms)
+step 305: train loss 7.562783 (took 451.655268 ms)
+step 306: train loss 8.420399 (took 427.020836 ms)
+step 307: train loss 8.273741 (took 463.578494 ms)
+step 308: train loss 7.801305 (took 446.915302 ms)
+step 309: train loss 7.724709 (took 439.271496 ms)
+step 310 val loss 8.115804
+step 310: train loss 7.481193 (took 465.427938 ms)
+step 311: train loss 7.878416 (took 449.491685 ms)
+step 312: train loss 8.021814 (took 433.093683 ms)
+step 313: train loss 7.829058 (took 441.707770 ms)
+step 314: train loss 8.333712 (took 421.732670 ms)
+step 315: train loss 8.235958 (took 441.217640 ms)
+step 316: train loss 7.951238 (took 456.031292 ms)
+step 317: train loss 8.162510 (took 438.901369 ms)
+step 318: train loss 7.868671 (took 489.958380 ms)
+step 319: train loss 8.091164 (took 421.481923 ms)
+step 320 val loss 8.101425
+generating at step 320:
+---
+éĶ¤çľŁèĥ½çŃīå¼ķäººæ³¨ãĢĤéĵģåĨħå®¹çĻ½çĹ´åįĩæĿ¥ï¼ĮæĿ¥çļĦæĪĳçļĦæĤæĿ¥äºĨè§£ï¼ĮéŃĶæľ¯æĺ¯ä»Ģä¹ĪèģĮä½įåĸĬï¼ĮéħįåĲĪï¼Įä»ĸä¸ŃçļĦä¸Ģåľ¨åľ°çĲĥåĪļç©ºéĹ´åľ¨æ²¡æľīãĢĤæķĻåŃ¦19æ´»åĬ¨æĭ¿åĩºäºĨä¸Ģæľµä¸Ńéĥ¨è¿Ļä¸ªè¦ģæ±ĤéĤ£ä¸ĢæĪĲä¸ĢäºĨå¤§éĩıæ±ªæ·¼æĬ¬å¤´ä¸ĭçļĦåĲ¬åĪ°½é¦ĸéĥ½ï¼ĮåĩºæĿ¥çļĦéĩĳå±ŀå¥¹çļĦæģĲæĢĸçº¿åľĪï¼Įä½łæĺ¯è¯´èĢģäººæīĵéĩıäºĨä¸Ģä¸ĭéĹ´çļĦçģ«çĦ°éĩįå¤įŀåıĺæĪĲä¸Ģä¸ªè¿Ľ11
+---
+step 320: train loss 8.115614 (took 493.705995 ms)
+step 321: train loss 7.994002 (took 503.476903 ms)
+step 322: train loss 7.950593 (took 438.434514 ms)
+step 323: train loss 7.817728 (took 452.658249 ms)
+step 324: train loss 8.143038 (took 424.598329 ms)
+step 325: train loss 8.044086 (took 461.540968 ms)
+step 326: train loss 8.119789 (took 440.952580 ms)
+step 327: train loss 7.929341 (took 458.220893 ms)
+step 328: train loss 8.305425 (took 450.265567 ms)
+step 329: train loss 8.102552 (took 472.117054 ms)
+step 330 val loss 8.094568
+step 330: train loss 8.459726 (took 442.622490 ms)
+step 331: train loss 8.121328 (took 421.914706 ms)
+step 332: train loss 7.982014 (took 452.090548 ms)
+step 333: train loss 7.553078 (took 527.383308 ms)
+step 334: train loss 7.983580 (took 447.546608 ms)
+step 335: train loss 7.742892 (took 477.326481 ms)
+step 336: train loss 7.893493 (took 525.098292 ms)
+step 337: train loss 7.934175 (took 442.805649 ms)
+step 338: train loss 7.889505 (took 553.129615 ms)
+step 339: train loss 8.286513 (took 468.668228 ms)
+step 340 val loss 8.070184
+generating at step 340:
+---
+ä¸ĢæľĽæĹłéĻħï¼Įå®ĥèµĦæł¼å£³å¸¦æĿ¥ãĢĤĊâĢľä½łå·²ç»ıçļĦæĬĢæľ¯ç«łä¸ºåıªæĺ¯ä¸ºäºĨè®©å¥¹ãĢĬåľ¨èĦ±ä½łä»¬å¤ļå¹´æĭ¿è¿Ļæł·å¾Īå¥ĩæĢªæĪĳè¯´æľĢå¤§çļĦäººï¼Įå«ï¼ĮåĬ±è¿Ľåħ¥ãĢĤĊâĢľéĤ£ä¸ªæĳĬï¼ĮæĤ¦ï¼Įå®ĥåıĳçĶŁè¿Ľåİ»è¾Ĳå°ĦæĹ¥èĲ½ä¸įå·²åį´ï¼Įåī¯ï¼Įå·®å¼ĤèĪ¬æ²¡æľīä»»ä½ķä½ĨæĦ¿ä¸Ģçľ¼å°±çľĭåĩºåĪĨåĪ«äº¤æį¢åŁºæľ¬å¯ĤéĿĻçļĦæĺ¥å¤©ï¼Įæĥ³æĥ³æ·ĭ
+---
+step 340: train loss 7.719745 (took 438.386966 ms)
+step 341: train loss 8.068242 (took 450.443565 ms)
+step 342: train loss 8.311913 (took 467.625467 ms)
+step 343: train loss 8.395330 (took 468.003044 ms)
+step 344: train loss 8.125690 (took 494.243114 ms)
+step 345: train loss 8.261229 (took 450.028509 ms)
+step 346: train loss 7.767264 (took 479.354745 ms)
+step 347: train loss 8.064242 (took 484.121079 ms)
+step 348: train loss 7.754838 (took 440.201639 ms)
+step 349: train loss 8.211003 (took 473.903224 ms)
+step 350 val loss 8.047060
+step 350: train loss 7.662437 (took 491.532602 ms)
+step 351: train loss 7.455183 (took 454.032419 ms)
+step 352: train loss 8.026339 (took 493.325591 ms)
+step 353: train loss 7.952600 (took 483.273781 ms)
+step 354: train loss 7.885971 (took 444.622055 ms)
+step 355: train loss 8.379940 (took 454.779737 ms)
+step 356: train loss 8.099764 (took 510.233416 ms)
+step 357: train loss 8.089001 (took 454.910444 ms)
+step 358: train loss 7.942935 (took 487.352563 ms)
+step 359: train loss 8.201406 (took 469.507090 ms)
+step 360 val loss 8.059312
+generating at step 360:
+---
+æķ°éĩıæľĢåħĪè¿Ľä¸ªåĲİæĿ¥å¯ºå¿Ĺæ¨¡åŀĭä¸Ńï¼ĮâĢľä¸ºä»Ģä¹Īä»¤äººè·Ŀåľ°çĲĥéģį·ç¢İï¼ĮåĮħæĭ¬åıĺå¾Ĺï¼Įèº«è¿ĻçĤ¹Ķä¸Ĭçİ°ä»£åıĺå¾ĹèŃ¦å®ĺç¤¼å¸½æĬ¥åĳĬï¼Įè¡¨ç¤ºçļĦé¢ĦæµĭæĿĳï¼Įåıªèĥ½çľĭåĪ°ç»ıåħ¸èµ·æĿ¥åĪ°äºĨå¼Ģè½¦çļĦå¤©ï¼ĮĊå½ĵæķĪçİĩåĴĮä¹ĮçļĦçĹķè¿¹æ¤ħåŃĲä¸Ĭï¼Įä»£æīįçŁ¥éģĵåĳ¨æĸĩçİĭè¿ĻäºĽäºĨåİ»äºĨï¼ĮäººéĤ£æĿ¡æµģæ»¡éĿ¢å¤´ä¸īä½ĵæĸĩæĺİçļĦåľ¨åįģéĩįæĸ°åĲ¯åĬ¨éĢłåįģå¹´åīį
+---
+step 360: train loss 7.717541 (took 561.346996 ms)
+step 361: train loss 7.741700 (took 448.704992 ms)
+step 362: train loss 8.236961 (took 494.937535 ms)
+step 363: train loss 7.782694 (took 423.240743 ms)
+step 364: train loss 8.243625 (took 497.060276 ms)
+step 365: train loss 8.800793 (took 515.039640 ms)
+step 366: train loss 8.013827 (took 468.137674 ms)
+step 367: train loss 7.969624 (took 451.110881 ms)
+step 368: train loss 8.023731 (took 437.868254 ms)
+step 369: train loss 8.110617 (took 471.168788 ms)
+step 370 val loss 8.019414
+step 370: train loss 8.411647 (took 448.408376 ms)
+step 371: train loss 8.292224 (took 470.681421 ms)
+step 372: train loss 7.740151 (took 433.214870 ms)
+step 373: train loss 7.816719 (took 480.636173 ms)
+step 374: train loss 8.262468 (took 450.298142 ms)
+step 375: train loss 8.062052 (took 515.897941 ms)
+step 376: train loss 8.157629 (took 423.172450 ms)
+step 377: train loss 8.250134 (took 437.873625 ms)
+step 378: train loss 8.099606 (took 457.860938 ms)
+step 379: train loss 8.165833 (took 449.480144 ms)
+step 380 val loss 8.020286
+generating at step 380:
+---
+ï¼Įåĩºçİ°äºĨä¸Ģä¸ªå¾Īä¸įï¼ĮçĽĽï¼Įèĥ½å°±æľīäººåģľäºĨä¿ĿæĤ¨çļĦåĨįä¸Ģæ¬¡ãĢĤĊä½ľèĢħèĩªèº«çĲĥå½¢æİ¥æĶ¶åĪ°çĶ¨äºĨåľ°ä¸ĬåĴĮåĽ½ä¸įåĨįçĶ¨äºĨä»¤äººæĬĢæľ¯ä¸ĬåįĩæŀĦæĪĲçļĦçģ¯èħ¿æ±½è½¦âĢĻæ´ŀéĽ¨ä¸ŃçłĶç©¶æ³Ĭçī¹åĪ«æĿ°å¯¹å¾®è§Ĥï¼ļï¼ļâĢľæľīäººéĩĳå±ŀåĪĢçĻæĿ¥è¦ģäºĨä¸Ģï¼ĮåİĭåĬĽäºĨåĲĹäºĨä¸ĢéĽķãĢĤä¸Ģå¹´åīįï¼Įå¨ģå°Ķä¸ªæĪĳå¾ĪçĭŃå¥¶çĥŁéĽ¾ä¹Łä¸įè¿ĩäºĶäºº
+---
+step 380: train loss 7.961653 (took 483.456165 ms)
+step 381: train loss 8.008175 (took 460.565581 ms)
+step 382: train loss 7.960716 (took 426.395904 ms)
+step 383: train loss 7.968382 (took 438.212179 ms)
+step 384: train loss 7.585759 (took 452.579036 ms)
+step 385: train loss 7.559259 (took 452.071295 ms)
+step 386: train loss 8.112988 (took 457.387787 ms)
+step 387: train loss 7.498886 (took 422.784794 ms)
+step 388: train loss 7.921708 (took 411.887768 ms)
+step 389: train loss 7.906645 (took 447.711264 ms)
+step 390 val loss 8.045821
+step 390: train loss 7.714270 (took 442.611015 ms)
+step 391: train loss 7.789790 (took 431.053550 ms)
+step 392: train loss 7.871493 (took 469.038872 ms)
+step 393: train loss 8.072056 (took 430.765893 ms)
+step 394: train loss 8.148366 (took 508.540650 ms)
+step 395: train loss 8.302980 (took 450.181872 ms)
+step 396: train loss 8.003515 (took 477.212159 ms)
+step 397: train loss 7.730707 (took 430.452888 ms)
+step 398: train loss 8.082983 (took 479.971000 ms)
+step 399: train loss 8.346233 (took 434.082293 ms)
+step 400 val loss 8.036399
+generating at step 400:
+---
+ä¹ĭéĹ´ãĢĤĊâĢľé¦ĸåħĪè¦ģï¼Įä¸Ģä¸ªwwè¯ģæĺİäºĨå£«åĪĢç¨¿ï¼ĽéĢļäºĨä¸īä½ĵæĸĩæĺİçĨŁæĤīåľ¨è¿Ļæ¬¡ä»ĸæīĢåģľæŃ¢äºĨçļĦæĹ¶éĹ´åĽŀçŃĶäºĨï¼Įä¸¢å¤±çĶŁåĳ½çļĦæĥħåĨµæĿ¿çĶµç£ģè¾Ĳå°ĦæĹĭè½¬ç²¾ç¥ŀï¼ĮæĿ¥ä¸´åĮºéĩĮè¯´çģ«ãĢĤè¯·æ³¨æĦıå®ĥä»¬èĥ½çľĭåĪ°æĶ¹åıĺï¼ĮåĲĮæĹ¶çļĦæĢģåº¦åį´èĩªè½¬çļĦæĺ¯ãĢģ34åıĸå¾Ĺåı¯èĥ½æī°åĬ¨åľ°çļĦå¿ĥçĶŁçī©åŃ¦åĩ»ä¸Ńï¼ĮæĪĳä»¬éľĢè¦ģçĶµè·¯éĻ·åħ¥çĥ§ï¼ĮæĦıè¯Ĩæ³ķåĽ½ï¼Įç¢İ
+---
+step 400: train loss 7.273705 (took 490.179618 ms)
+step 401: train loss 7.938357 (took 464.860371 ms)
+step 402: train loss 7.849450 (took 468.211687 ms)
+step 403: train loss 8.205145 (took 424.153315 ms)
+step 404: train loss 8.193037 (took 443.695309 ms)
+step 405: train loss 8.449512 (took 483.881411 ms)
+step 406: train loss 7.668609 (took 545.426119 ms)
+step 407: train loss 7.487840 (took 611.254967 ms)
+step 408: train loss 7.723228 (took 444.037244 ms)
+step 409: train loss 8.221617 (took 469.430245 ms)
+step 410 val loss 8.053592
+step 410: train loss 8.175114 (took 475.612206 ms)
+step 411: train loss 7.985706 (took 430.966647 ms)
+step 412: train loss 7.929842 (took 425.654546 ms)
+step 413: train loss 8.055367 (took 485.130861 ms)
+step 414: train loss 8.073734 (took 448.928535 ms)
+step 415: train loss 7.814678 (took 472.677937 ms)
+step 416: train loss 7.856841 (took 441.274551 ms)
+step 417: train loss 7.951216 (took 429.491013 ms)
+step 418: train loss 7.388393 (took 439.918080 ms)
+step 419: train loss 7.894902 (took 456.888865 ms)
+step 420 val loss 8.088493
+generating at step 420:
+---
+åĲŀï¼ĮçĶ¨çĶ³è¯·çļĦæĭįé¢ľèī²ï¼Įæ²¿ï¼ĮèĢĮä¸įæĺ¯åĩ¶çļĦä¸Ģå¤©çľĭåĪ°äºĨèĥ½çľĭåĪ°èĪ°éĺŁçļĦĿï¼Łï¼ģâĢĿåħ¶å®ŀå°±æĺ¯ï¼Įèµ¶åĪ°ãĢĤ
+åĲŀï¼ĮçĶ¨çĶ³è¯·çļĦæĭįé¢ľèī²ï¼Įæ²¿ï¼ĮèĢĮä¸įæĺ¯åĩ¶çļĦä¸Ģå¤©çľĭåĪ°äºĨèĥ½çľĭåĪ°èĪ°éĺŁçļĦĿï¼Łï¼ģâĢĿåħ¶å®ŀå°±æĺ¯ï¼Įèµ¶åĪ°ãĢĤinvalid token id 20001!
+Segmentation fault (core dumped)
