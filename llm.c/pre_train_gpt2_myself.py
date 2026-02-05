@@ -14,15 +14,29 @@ TOKENIZER_JSON = "output_tokenizer/threebody_tokenizer.json"
 # 模型输出路径
 OUTPUT_MODEL_BIN = "output_pre_model/gpt2_init.bin"
 
+# 定义日志文件路径 (与模型在同一目录下)
+LOG_FILE_PATH = os.path.join(os.path.dirname(OUTPUT_MODEL_BIN), "log.txt")
+
 # 模型架构参数 (针对《三体》的小型模型)
-# 建议: L=6, H=8, E=512, Context=512
 CONF_N_LAYER = 6
 CONF_N_HEAD = 8
 CONF_N_EMBD = 512
 CONF_BLOCK_SIZE = 512
 # ===========================================
 
-# --- 1. GPT-2 模型定义 (复刻 train_gpt2.py 的结构) ---
+# --- [新增] 双重日志函数 ---
+def log_print(message):
+    """同时打印到控制台和写入日志文件"""
+    print(message) # 打印到屏幕
+    
+    # 追加写入文件
+    try:
+        with open(LOG_FILE_PATH, "a", encoding="utf-8") as f:
+            f.write(message + "\n")
+    except Exception as e:
+        print(f"⚠️ 写入日志失败: {e}")
+
+# --- 1. GPT-2 模型定义 (保持不变) ---
 class NewGELU(nn.Module):
     def forward(self, input):
         return 0.5 * input * (1.0 + torch.tanh(math.sqrt(2.0 / math.pi) * (input + 0.044715 * torch.pow(input, 3.0))))
@@ -98,10 +112,7 @@ class GPT(nn.Module):
             ln_f = nn.LayerNorm(config.n_embd),
         ))
         self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
-        # 权重绑定 (Weight Tying): Embedding 和 Output Layer 共享权重
         self.transformer.wte.weight = self.lm_head.weight
-
-        # 初始化参数 (重要！)
         self.apply(self._init_weights)
 
     def _init_weights(self, module):
@@ -115,12 +126,11 @@ class GPT(nn.Module):
             torch.nn.init.zeros_(module.bias)
             torch.nn.init.ones_(module.weight)
 
-# --- 2. 导出函数 (适配 llm.c 格式) ---
+# --- 2. 导出函数 ---
 def write_fp32(tensor, file):
     file.write(tensor.detach().cpu().numpy().astype("float32").tobytes())
 
 def write_tensors(model_tensors, L, file):
-    # 按照 C 代码读取的顺序写入
     write_fp32(model_tensors["transformer.wte.weight"], file)
     write_fp32(model_tensors["transformer.wpe.weight"], file)
     for i in range(L): 
@@ -151,80 +161,81 @@ def write_tensors(model_tensors, L, file):
     write_fp32(model_tensors["transformer.ln_f.bias"], file)
 
 def write_model(model, filename):
-    # Header 格式: [Magic, Version, B, V, L, H, E] + Padding
     header = torch.zeros(256, dtype=torch.int32)
-    header[0] = 20240326 # Magic number (llm.c 要求的)
-    header[1] = 1        # Version
+    header[0] = 20240326
+    header[1] = 1
     header[2] = model.config.block_size
     header[3] = model.config.vocab_size
     header[4] = model.config.n_layer
     header[5] = model.config.n_head
     header[6] = model.config.n_embd
     
-    print(f"写入 Header: T={header[2]}, V={header[3]}, L={header[4]}, H={header[5]}, C={header[6]}")
+    # [修改点] 使用 log_print 替代 print
+    log_print(f"写入 Header: T={header[2]}, V={header[3]}, L={header[4]}, H={header[5]}, C={header[6]}")
 
     params = {name: param.cpu() for name, param in model.named_parameters()}
-    
-    # ===【新增代码开始】===
-    # 获取文件所在的目录路径 (例如 "output_pre_model")
-    folder_path = os.path.dirname(filename)
-    # 如果目录路径不为空且不存在，则创建它
-    if folder_path and not os.path.exists(folder_path):
-        print(f"正在创建目录: {folder_path}")
-        os.makedirs(folder_path, exist_ok=True)
-    # ===【新增代码结束】===
     
     with open(filename, "wb") as file:
         file.write(header.numpy().tobytes())
         write_tensors(params, model.config.n_layer, file)
-    print(f"✅ 模型已保存至: {filename}")
+    
+    # [修改点] 使用 log_print
+    log_print(f"✅ 模型已保存至: {filename}")
 
 # --- 3. 主程序 ---
 def main():
+    # === [修改点] 提前创建目录，确保 log 文件可以写入 ===
+    folder_path = os.path.dirname(OUTPUT_MODEL_BIN)
+    if folder_path and not os.path.exists(folder_path):
+        # 先临时 print 一下，或者直接 log_print（会自动创建文件，但目录必须存在）
+        print(f"正在创建目录: {folder_path}") 
+        os.makedirs(folder_path, exist_ok=True)
+        # 补一条 log
+        log_print(f"正在创建目录: {folder_path}")
+
+    # 清空旧的 log 文件 (可选，如果你想每次覆盖的话)
+    with open(LOG_FILE_PATH, "w", encoding="utf-8") as f:
+        f.write("") # Clear file
+
     # 1. 获取准确的 Vocab Size
     if os.path.exists(TOKENIZER_JSON):
-        print(f"正在加载分词器配置: {TOKENIZER_JSON}")
+        log_print(f"正在加载分词器配置: {TOKENIZER_JSON}")
         tokenizer = Tokenizer.from_file(TOKENIZER_JSON)
-        # 获取基础词表大小
         base_vocab_size = tokenizer.get_vocab_size()
-        # 对齐到 64 的倍数 (Padding) - 对 C/CUDA 性能至关重要
         padded_vocab_size = ((base_vocab_size + 63) // 64) * 64
-        print(f"检测到词表大小: {base_vocab_size} -> 对齐后: {padded_vocab_size}")
+        log_print(f"检测到词表大小: {base_vocab_size} -> 对齐后: {padded_vocab_size}")
     else:
-        print(f"⚠️ 警告: 找不到 {TOKENIZER_JSON}，使用默认词表大小 50257")
+        log_print(f"⚠️ 警告: 找不到 {TOKENIZER_JSON}，使用默认词表大小 50257")
         padded_vocab_size = 50257
 
     # 2. 配置模型
     config = GPTConfig(
         block_size = CONF_BLOCK_SIZE,
-        vocab_size = padded_vocab_size, # 使用对齐后的大小
+        vocab_size = padded_vocab_size,
         n_layer = CONF_N_LAYER,
         n_head = CONF_N_HEAD,
         n_embd = CONF_N_EMBD
     )
 
-    # 3. 初始化模型 (Random Initialization)
-    print("正在初始化随机权重...")
+    # 3. 初始化模型
+    log_print("正在初始化随机权重...")
     model = GPT(config)
     
     # 4. 打印参数量
     n_params = sum(p.numel() for p in model.parameters())
-    print(f"模型参数量: {n_params/1e6:.2f}M")
+    log_print(f"模型参数量: {n_params/1e6:.2f}M")
 
     # 5. 保存为 .bin
     write_model(model, OUTPUT_MODEL_BIN)
     
-    print("\n" + "="*40)
-    print("🚀 准备工作完成！")
-    print(f"1. 初始权重文件: {OUTPUT_MODEL_BIN}")
-    print(f"2. 参数设置: -v {padded_vocab_size} (运行 llm.c 时请务必使用此参数)")
-    print("="*40)
+    # 结尾信息
+    log_print("\n" + "="*40)
+    log_print("🚀 准备工作完成！")
+    log_print(f"1. 初始权重文件: {OUTPUT_MODEL_BIN}")
+    log_print(f"2. 参数设置: -v {padded_vocab_size} (运行 llm.c 时请务必使用此参数)")
+    log_print("="*40)
     
-    folder_path = os.path.dirname(OUTPUT_MODEL_BIN)
-    file_name = os.path.join(folder_path, "log.txt")
-    with open(file_name, "w") as f:
-        f.write(f"1. 初始权重文件: {OUTPUT_MODEL_BIN}\n")
-        f.write(f"2. 模型的词表大小：参数设置: -v {padded_vocab_size} (运行 llm.c 时请务必使用此参数)\n")
+    # 注意：原本最后的 open(file_name, "w") 逻辑已经通过 log_print 实现了，不需要重复写
 
 if __name__ == "__main__":
     main()

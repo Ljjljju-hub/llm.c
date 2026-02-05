@@ -22,7 +22,7 @@
 
 # add_subdirectory(benches)
 
-cmake_minimum_required(VERSION 3.25.0)
+cmake_minimum_required(VERSION 3.10.0)
 project(train_gpt2cu LANGUAGES C CXX CUDA)
 
 set(CMAKE_CXX_STANDARD 20)
