@@ -21,7 +21,7 @@ LOG_FILE_PATH = os.path.join(os.path.dirname(OUTPUT_MODEL_BIN), "log.txt")
 CONF_N_LAYER = 6
 CONF_N_HEAD = 8
 CONF_N_EMBD = 512
-CONF_BLOCK_SIZE = 512
+CONF_BLOCK_SIZE = 512   # 最大上下文长度
 # ===========================================
 
 # --- [新增] 双重日志函数 ---
@@ -162,7 +162,7 @@ def write_tensors(model_tensors, L, file):
 
 def write_model(model, filename):
     header = torch.zeros(256, dtype=torch.int32)
-    header[0] = 20240326
+    header[0] = 20260123
     header[1] = 1
     header[2] = model.config.block_size
     header[3] = model.config.vocab_size

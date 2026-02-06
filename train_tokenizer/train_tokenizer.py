@@ -1,104 +1,137 @@
 from tokenizers import Tokenizer, models, pre_tokenizers, decoders, trainers, processors
 import os
+import glob
 import re
-from datetime import datetime
 
-# 定义基础文件名
+# --- 配置 ---
 BASE_MODEL_NAME = "threebody_tokenizer"
-# 保存文件夹
-output_dir = "output_tokenizer"
+OUTPUT_DIR = "output_tokenizer"
+DATASET_DIR = "./datasets"
+TEMP_CORPUS_FILE = "temp_merged_corpus.txt" # 临时合并文件
 
-def train_threebody_tokenizer(data_file):
-    # 1. 初始化 Tokenizer
-    # 使用 BPE 模型（GPT-2/3/4, LLaMA 同款核心算法）
-    tokenizer = Tokenizer(models.BPE())
+def clean_text(text):
+    """
+    数据清洗函数：只保留有用的文本
+    """
+    # 1. 替换全角空格为半角空格 (很多中文小说会有 \u3000)
+    text = text.replace('\u3000', ' ')
+    
+    # 2. 去除不可见字符 (除了换行符 \n 和 制表符 \t)
+    # 这一步是为了防止 weird control characters 进入词表
+    text = "".join(ch for ch in text if ch.isprintable() or ch in ['\n', '\t'])
 
-    # 2. 预处理 (Pre-tokenization)
-    # ByteLevel 极其重要：它将字符转化为字节。
-    # 这意味着任何 Unicode 字符（包括生僻汉字）都能被处理，不会出现 [UNK]
-    tokenizer.pre_tokenizer = pre_tokenizers.ByteLevel(add_prefix_space=False)
+    # 3. 把连续的多个空格变成一个空格 (可选，看你是否在意缩进)
+    text = re.sub(r'\s+', ' ', text) 
+    
+    # 4. 去除连续的空行 (保留段落结构，但去除大段空白)
+    text = re.sub(r'\n\s*\n', '\n', text)
+    
+    return text
 
-    # 3. 解码器 (Decoder)
-    # 用于将 ID 转回文本时，把字节还原成字符
-    tokenizer.decoder = decoders.ByteLevel()
+def merge_and_clean_files(source_dir, output_file):
+    """
+    读取目录下所有txt，清洗后合并到一个临时文件
+    """
+    # 找到所有 txt 文件
+    files = glob.glob(os.path.join(source_dir, "*.txt"))
+    if not files:
+        raise ValueError(f"在 {source_dir} 下没有找到 .txt 文件！")
+    
+    print(f"📚 发现 {len(files)} 个文件，准备合并清洗...")
+    
+    with open(output_file, 'w', encoding='utf-8') as outfile:
+        for file_path in files:
+            print(f"  -> 处理: {os.path.basename(file_path)}")
+            try:
+                # errors='ignore' 防止因为某个字编码错误导致整个脚本崩溃
+                with open(file_path, 'r', encoding='utf-8', errors='ignore') as infile:
+                    content = infile.read()
+                    cleaned_content = clean_text(content)
+                    outfile.write(cleaned_content)
+                    # 每个文件之间加个换行，防止前一本书的结尾和后一本书的开头连在一起
+                    outfile.write("\n") 
+            except Exception as e:
+                print(f"⚠️ 跳过文件 {file_path}: {e}")
+    
+    print(f"✅ 合并完成，生成临时语料: {output_file}")
+    return output_file
 
-    # 4. 设置训练器 (Trainer)
-    # vocab_size: 词表大小。
-    # 《三体》全文约 80-90万字。
-    # 常见的中文 LLM 词表在 3万-10万之间。
-    # 对于纯《三体》语料，设为 10,000 - 20,000 足够捕捉常用词和人名（如“罗辑”、“云天明”）。
+def train_tokenizer(corpus_file):
+    # 1. 初始化 Tokenizer (BPE)
+    tokenizer = Tokenizer(models.BPE(unk_token="[UNK]"))
+
+    # 2. 预处理 (ByteLevel)
+    tokenizer.pre_tokenizer = pre_tokenizers.BertPreTokenizer()
+
+    # 3. 解码器
+    tokenizer.decoder = decoders.BPEDecoder()
+
+    # 4. 训练器配置
+    # 注意：如果语料变大了（刘慈欣全集），20000 依然是合理的，
+    # 但如果语料极其巨大（GB级别），可能需要考虑 30000-50000。
     trainer = trainers.BpeTrainer(
         vocab_size=20000, 
-        min_frequency=2,  # 至少出现2次才会被收录
+        min_frequency=2,
         special_tokens=[
-            # --- 基础控制符 ---
-            "<|endoftext|>",  # 文档结束/EOS (End of Sentence)
-            "<|padding|>",    # 填充符/PAD (Padding)
-            
-            # --- 对话/指令微调专用符 (ChatML风格) ---
-            "<|im_start|>",   # 标记一句话的开始
-            "<|im_end|>",     # 标记一句话的结束 (非常重要，防止模型自言自语停不下来)
-            
-            # --- 角色标识符 (显式占位) ---
-            "<|system|>",     # 系统提示词 (System Prompt)
-            "<|user|>",       # 用户输入
-            "<|assistant|>",  # AI输出
-            
-            # --- 思考/思维链专用 (Optional, 类似 DeepSeek-R1) ---
-            "<|thought|>",    # 开始思考
-            "<|/thought|>"    # 结束思考
-        ], # 特殊符号
+            "[UNK]",
+            "<|endoftext|>", "<|padding|>", 
+            "<|im_start|>", "<|im_end|>", 
+            "<|system|>", "<|user|>", "<|assistant|>",
+            "<|thought|>", "<|/thought|>"
+        ],
         show_progress=True
     )
 
     # 5. 开始训练
-    print(f"开始训练 Tokenizer，读取文件: {data_file} ...")
-    tokenizer.train([data_file], trainer=trainer)
+    print(f"🚀 开始训练 Tokenizer，读取合并语料: {corpus_file} ...")
+    # 注意：这里直接传入文件路径列表
+    tokenizer.train([corpus_file], trainer=trainer)
 
-    # 6. 后处理 (Post-processing) - 可选
-    # 在 BPE 之前通常不需要复杂的 post-processing，但在保存前最好确认一下
+    # 6. 保存
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
     
-    # 7. 保存
-    # 2. 【关键】如果文件夹不存在，必须先创建它！
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    save_path = os.path.join(output_dir,"threebody_tokenizer.json")
+    save_path = os.path.join(OUTPUT_DIR, "threebody_tokenizer.json")
     tokenizer.save(save_path)
-    print(f"训练完成！Tokenizer 已保存至: {save_path}")
+    print(f"💾 训练完成！已保存至: {save_path}")
     return tokenizer
 
-# --- 执行训练 ---
-# 请确保当前目录下有 three_body.txt 文件
 if __name__ == "__main__":
-    # 如果你有三个文件，可以传入列表：["part1.txt", "part2.txt", "part3.txt"]
-    model_path = os.path.join(output_dir, "threebody_tokenizer.json")
-    if not os.path.exists(model_path):
-        tokenizer = train_threebody_tokenizer("./datasets/三体全集")
-    else:
-        print(f"🔍 发现已训练好的模型: {model_path}")
-        print("📂 正在直接加载...")
+    model_path = os.path.join(OUTPUT_DIR, "threebody_tokenizer.json")
+    
+    # 强制重新训练的开关（如果你想更新词表，设为 True）
+    FORCE_RETRAIN = False 
+
+    if not os.path.exists(model_path) or FORCE_RETRAIN:
+        # 1. 清洗并合并数据
+        merge_and_clean_files(DATASET_DIR, TEMP_CORPUS_FILE)
         
-        # --- 【核心代码】加载模型 ---
+        # 2. 训练
+        tokenizer = train_tokenizer(TEMP_CORPUS_FILE)
+        
+        # 3. 删除临时文件 (可选)
+        if os.path.exists(TEMP_CORPUS_FILE):
+            os.remove(TEMP_CORPUS_FILE)
+            print("🗑️ 已删除临时合并文件")
+    else:
+        print(f"🔍 发现已存在的模型: {model_path}")
         tokenizer = Tokenizer.from_file(model_path)
         print("✅ 加载成功！")
-    # --- 测试一下效果 ---
-    test_text = "不要回答！不要回答！不要回答！这是叶文洁发出的警告。"
-    encoded = tokenizer.encode(test_text)
-    
-    print("-" * 30)
-    print(f"测试文本: {test_text}")
-    print(f"分词结果 (Tokens): {encoded.tokens}")
-    decoded_text = tokenizer.decode(encoded.ids)
-    for i in encoded.ids:
-        print(f"解码结果: {tokenizer.decode([i])}\n")
-        
-    print(f"对应的 IDs: {encoded.ids}")
-    
-    # 验证是否收录了专有名词
-    name_test = "罗辑直接向三体世界发出了威慑。"
-    encoded_name = tokenizer.encode(name_test)
-    print(f"\n专有名词测试: {name_test}")
-    print(f"分词结果: {encoded_name.tokens}")
-    decoded_text = tokenizer.decode(encoded.ids)
-    print(f"解码结果: {decoded_text}")
-    # 观察 '罗辑' 是否被合并为一个 Token，还是分成了 '罗' 和 '辑'
+
+    # --- 测试环节 ---
+    print("\n" + "="*30)
+    # 测试一些小说里常见的词，看看它们是一个 Token 还是被拆分了
+    test_sentences = [
+        "不要回答！不要回答！不要回答！",
+        "罗辑直接向三体世界发出了威慑。",
+        "给岁月以文明，而不是给文明以岁月。", # 黑暗森林名言
+        "弱小和无知不是生存的障碍，傲慢才是。", # 死神永生名言
+        "章北海微微一笑。",
+        "这是刘慈欣的科幻小说全集。"
+    ]
+
+    for text in test_sentences:
+        encoded = tokenizer.encode(text)
+        print(f"\n原文: {text}")
+        print(f"Tokens: {encoded.tokens}")
+        print(f"IDs:    {encoded.ids}")

@@ -1,0 +1,5 @@
+Vocab Size: 20000
+Padded Vocab: 20032
+Train Tokens: 789146
+Val Tokens: 98644
+Test Tokens: 98653

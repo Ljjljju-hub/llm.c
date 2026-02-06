@@ -1,210 +1,250 @@
 import os
+import glob
+import json
+import struct
+import re
 import numpy as np
+import logging  # 引入 logging 模块
 from tokenizers import Tokenizer
 
-# 将数据集的token id转换为bin
-def generate_bin():
-    # 准备目录
+# ================= 配置区域 =================
+TOKENIZER_JSON_PATH = "output_tokenizer/threebody_tokenizer.json"
+DATASET_DIR = "datasets" 
+OUTPUT_DIR = "output_tokenizer"
+LOG_FILE = os.path.join(OUTPUT_DIR, "data_processing.log") # Log 文件路径
+
+# ⚠️ 必须检查你的 json 文件，确认 <|endoftext|> 的 ID 是多少
+EOT_TOKEN_ID = 1  
+# ===========================================
+
+def clean_text(text):
+    """
+    文本清洗函数 (保持不变)
+    """
+    text = text.replace('\u3000', ' ')
+    text = "".join(ch for ch in text if ch.isprintable() or ch in ['\n', '\t'])
+    text = re.sub(r'\n\s*\n', '\n', text)
+    text = text.strip()
+    return text
+
+def generate_dataset_bin():
+    """
+    生成数据集 bin 文件，并记录日志
+    """
+    logging.info(">>> 阶段 1/2: 开始生成数据集 bin 文件")
+    print(f"\n[1/2] 正在生成数据集 bin 文件 (32-bit mode)...")
+    
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
 
-    # --- 2. 加载分词器 ---
-    print(f"Loading tokenizer: {TOKENIZER_PATH}")
-    tokenizer = Tokenizer.from_file(TOKENIZER_PATH)
+    # 1. 加载分词器
+    if not os.path.exists(TOKENIZER_JSON_PATH):
+        error_msg = f"找不到 Tokenizer 文件: {TOKENIZER_JSON_PATH}"
+        logging.error(error_msg)
+        raise FileNotFoundError(error_msg)
+    
+    print(f"Loading tokenizer: {TOKENIZER_JSON_PATH}")
+    tokenizer = Tokenizer.from_file(TOKENIZER_JSON_PATH)
     vocab_size = tokenizer.get_vocab_size()
-    print(f"Vocab size: {vocab_size}")
-
-    # --- 3. 读取文本 ---
-    print(f"Reading text: {INPUT_FILE}")
-    with open(INPUT_FILE, 'r', encoding='utf-8') as f:
-        text = f.read()
-
-    # --- 4. 编码 (最关键一步) ---
-    # 把 "罗辑" 变成 [5000] 这样的数字
-    print("Encoding text to IDs...")
-    encoded = tokenizer.encode(text)
-    ids = encoded.ids
     
-    # 添加结束符 (End of Text)，有助于模型学习何时停止
-    # 这里的 0 必须对应你 json 文件里 <|endoftext|> 的 ID
-    # 这样切分后训练集后是没有id0的。
-    # 影响：对于《三体》单行本训练，影响为零。模型会把训练集当成一个无限循环的故事来读。
-    ids.append(0) 
-    
-    total_tokens = len(ids)
-    print(f"Total tokens: {total_tokens}")
+    msg = f"Tokenizer 加载成功, Vocab size: {vocab_size}"
+    print(msg)
+    logging.info(msg)
 
-    # --- 5. 转换为 uint16 (核心优化) ---
-    # 因为你的词表约 20000 < 65535，所以用 uint16 (2字节) 存。
-    # 这比 Python 默认的 int (通常8字节) 或 int32 (4字节) 极其节省空间。
-    data = np.array(ids, dtype=np.uint32)
+    # 2. 扫描文件
+    txt_files = glob.glob(os.path.join(DATASET_DIR, "*.txt"))
+    if not txt_files:
+        error_msg = f"在 {DATASET_DIR} 下没有找到 .txt 文件！"
+        logging.error(error_msg)
+        raise ValueError(error_msg)
+    txt_files.sort()
 
-    # --- 6. 划分训练集和验证集 划分数据集 (80% / 10% / 10%) ---
-    # 注意这里是顺序划分
-    # 对于小说、代码这种强逻辑、强时序的数据，必须像切蛋糕一样一刀切。
-    # 只有对于互不相关的独立样本（比如 10000 条独立的微博评论做情感分析），才使用随机划分。
-    split_idx1 = int(total_tokens * 0.8)
-    split_idx2 = int(total_tokens * 0.9)
-    # 训练集: 0% -> 80%
-    train_data = data[:split_idx1]
-    # 验证集: 80% -> 90%
-    val_data = data[split_idx1:split_idx2]
-    # 测试集: 90% -> 100%
-    test_data = data[split_idx2:]
+    master_train = []
+    master_val = []
+    master_test = []
 
-    # --- 7. 写入硬盘 ---
-    # .tofile() 会保存纯二进制数据，不带任何文件头信息
+    print(f"发现 {len(txt_files)} 个文件，开始逐个清洗并划分 (8:1:1)...")
+    logging.info(f"发现 {len(txt_files)} 个源文件: {[os.path.basename(f) for f in txt_files]}")
+
+    for file_path in txt_files:
+        file_name = os.path.basename(file_path)
+        print(f"  -> 处理: {file_name}")
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                raw_text = f.read()
+            
+            # --- 步骤 A: 清洗 ---
+            cleaned_text = clean_text(raw_text)
+            
+            # --- 步骤 B: 编码 ---
+            encoded = tokenizer.encode(cleaned_text)
+            ids = encoded.ids
+            
+            # 在每本书末尾加 EOT
+            ids.append(EOT_TOKEN_ID)
+            
+            # --- 步骤 C: 按文件划分 (8:1:1) ---
+            n_tokens = len(ids)
+            if n_tokens < 10: 
+                msg = f"警告: {file_name} 内容太少 ({n_tokens} tokens)，跳过划分，全部放入 Train"
+                print(f"     ⚠️ {msg}")
+                logging.warning(msg)
+                master_train.extend(ids)
+                continue
+
+            split_80 = int(n_tokens * 0.8)
+            split_90 = int(n_tokens * 0.9)
+            
+            chunk_train = ids[:split_80]
+            chunk_val   = ids[split_80:split_90]
+            chunk_test  = ids[split_90:]
+            
+            master_train.extend(chunk_train)
+            master_val.extend(chunk_val)
+            master_test.extend(chunk_test)
+            
+            log_msg = f"文件 {file_name} 处理完毕: Train={len(chunk_train)}, Val={len(chunk_val)}, Test={len(chunk_test)} (Tokens)"
+            print(f"     ✅ Train: {len(chunk_train)}, Val: {len(chunk_val)}, Test: {len(chunk_test)}")
+            logging.info(log_msg)
+
+        except Exception as e:
+            msg = f"处理文件 {file_name} 时发生错误: {e}"
+            print(f"     ❌ {msg}")
+            logging.error(msg)
+
+    # 3. 转换为 numpy uint32
+    print("\n正在转换为 np.uint32...")
+    train_data = np.array(master_train, dtype=np.uint32)
+    val_data   = np.array(master_val,   dtype=np.uint32)
+    test_data  = np.array(master_test,  dtype=np.uint32)
+
+    # 4. 写入文件
+    print("正在写入硬盘...")
     train_path = os.path.join(OUTPUT_DIR, "train.bin")
-    val_path = os.path.join(OUTPUT_DIR, "val.bin")
-    test_path = os.path.join(OUTPUT_DIR, "test.bin")
+    val_path   = os.path.join(OUTPUT_DIR, "val.bin")
+    test_path  = os.path.join(OUTPUT_DIR, "test.bin")
     
     train_data.tofile(train_path)
     val_data.tofile(val_path)
     test_data.tofile(test_path)
 
+    # 5. 生成统计日志
     print("-" * 30)
-    print(f"🎉 生成完成！")
-    print(f"训练集: {train_path} ({len(train_data)} tokens)")
-    print(f"验证集: {val_path} ({len(val_data)} tokens)")
-    print(f"验证集: {test_path} ({len(test_data)} tokens)")
-    
-    # 计算给 C 语言用的词表大小 (对齐到 64 的倍数)
-    padded_vocab = ((vocab_size + 63) // 64) * 64
-    vocab_size_path = os.path.join(OUTPUT_DIR, "vocab_log.txt")
-    with open(vocab_size_path, 'w', encoding='utf-8') as f:
-        f.write(f"Total tokens={total_tokens}\n")
-        f.write(f"训练集: {train_path} ({len(train_data)} tokens)\n")
-        f.write(f"验证集: {val_path} ({len(val_data)} tokens)\n")
-        f.write(f"验证集: {test_path} ({len(test_data)} tokens)\n")
-        f.write(f"vocab_size={vocab_size}\n")
-        f.write(f"padded_vocab={padded_vocab}\n")
-    print(f"\n💡 下一步运行 llm.c 时，请使用参数: -v {padded_vocab}")
-    
-import json
-import struct
-import sys
-import os
-# 将词表转换为bin
+    print(f"🎉 数据集生成完毕！")
+    print(f"  Train: {len(train_data)} tokens -> {train_path}")
+    print(f"  Val  : {len(val_data)}   tokens -> {val_path}")
+    print(f"  Test : {len(test_data)}  tokens -> {test_path}")
 
-def convert_tokenizer(json_path, bin_path):
-    print(f"正在加载 Tokenizer 文件: {json_path}")
+    padded_vocab = ((vocab_size + 63) // 64) * 64
     
+    # 写入 info txt (供 C 读取)
+    info_path = os.path.join(OUTPUT_DIR, "dataset_info.txt")
+    with open(info_path, 'w', encoding='utf-8') as f:
+        f.write(f"Vocab Size: {vocab_size}\n")
+        f.write(f"Padded Vocab: {padded_vocab}\n")
+        f.write(f"Train Tokens: {len(train_data)}\n")
+        f.write(f"Val Tokens: {len(val_data)}\n")
+        f.write(f"Test Tokens: {len(test_data)}\n")
+    
+    # 写入 Log
+    logging.info("-" * 20)
+    logging.info("数据集汇总统计:")
+    logging.info(f"Total Train Tokens: {len(train_data)}")
+    logging.info(f"Total Val Tokens  : {len(val_data)}")
+    logging.info(f"Total Test Tokens : {len(test_data)}")
+    logging.info(f"Padded Vocab Size : {padded_vocab} (C语言参数 -v)")
+    logging.info(f"Output files: {train_path}, {val_path}, {test_path}")
+    
+    print(f"💡 C 语言运行参数: -v {padded_vocab}")
+
+def convert_tokenizer_bin():
+    """
+    将 Tokenizer 词表转换为 C 语言可读的二进制格式 (保持不变，增加日志)
+    """
+    logging.info(">>> 阶段 2/2: 开始转换 Tokenizer bin")
+    print(f"\n[2/2] 正在转换 Tokenizer 词表为二进制...")
+    json_path = TOKENIZER_JSON_PATH
+    bin_path = os.path.join(OUTPUT_DIR, "threebody_tokenizer.bin")
+
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    # ---------------------------------------------------------
-    # 1. 提取词表 (Vocab Extraction)
-    # ---------------------------------------------------------
     vocab_map = {}
-    
-    # 情况 A: HuggingFace 标准 tokenizer.json 结构
     if "model" in data and "vocab" in data["model"]:
-        # print("识别为 HuggingFace 'tokenizer.json' 格式")
         vocab_map = data["model"]["vocab"]
-    # 情况 B: 简单的键值对 vocab.json
     elif isinstance(data, dict):
-        first_val = next(iter(data.values()))
-        if isinstance(first_val, int):
-            # print("识别为简单字典格式 {'token': id}")
-            vocab_map = data
-        else:
-            print("警告: 无法识别的 JSON 结构，尝试在根目录寻找 'vocab' 字段")
-            if "vocab" in data:
-                vocab_map = data["vocab"]
-    
-    if not vocab_map:
-        raise ValueError("无法在 JSON 中找到词表 (vocab) 数据！")
-
-    # ---------------------------------------------------------
-    # 2. 排序与对齐 (Sorting & Alignment) --- 【核心修改点】
-    # ---------------------------------------------------------
-    # 找出实际最大的 ID
-    max_id = max(vocab_map.values())
-    original_vocab_size = max_id + 1
-    
-    # 【关键步骤】强制向上对齐到 64 的倍数
-    # 这会把 20000 变成 20032，从而包含模型可能预测出的 "越界" ID
-    vocab_size = ((original_vocab_size + 63) // 64) * 64
-    
-    print(f"原始词表大小: {original_vocab_size}")
-    print(f"对齐后大小 (Padding): {vocab_size} (这将是 C 程序读取的大小)")
-    
-    # 初始化列表，长度为对齐后的大小
-    token_list = [None] * vocab_size
-    
-    # 填入真实的词
-    for token_str, token_id in vocab_map.items():
-        if 0 <= token_id < vocab_size:
-            token_list[token_id] = token_str
-        else:
-            print(f"警告: 跳过异常 ID {token_id}: {token_str}")
-
-    # ---------------------------------------------------------
-    # 3. 填补空洞 (Gap Filling)
-    # ---------------------------------------------------------
-    fill_count = 0
-    # 遍历整个【对齐后】的大小
-    for i in range(vocab_size):
-        if token_list[i] is None:
-            # 【关键步骤】用 <pad_ID> 填补空位
-            # 这样当 C 程序读到 ID 20001 时，会打印 "<pad_20001>" 而不是崩溃
-            token_list[i] = f"<pad_{i}>"
-            fill_count += 1
-    
-    if fill_count > 0:
-        print(f"已自动填充 {fill_count} 个空洞 (含 Padding)")
-
-    # ---------------------------------------------------------
-    # 4. 写入二进制文件 (Binary Writing)
-    # ---------------------------------------------------------
-    print(f"正在写入二进制文件: {bin_path}")
-    
-    with open(bin_path, 'wb') as f:
-        # --- Header (1024 bytes) ---
-        f.write(struct.pack('<I', 20260123))   # Magic
-        f.write(struct.pack('<I', 1))          # Version
-        f.write(struct.pack('<I', vocab_size)) # 【注意】写入的是对齐后的大小(20032)
-        f.write(b'LJJ\x00')                    # Creator
-        
-        # 填充 Header 剩余部分
-        for _ in range(252):
-            f.write(struct.pack('<I', 0))
-
-        # --- Body (Token Data) ---
-        for i, token_str in enumerate(token_list):
-            # 处理特殊字符
-            token_str = token_str.replace('Ġ', ' ') 
-            token_bytes = token_str.encode('utf-8')
-            length = len(token_bytes)
+        if "vocab" in data: vocab_map = data["vocab"]
+        else: vocab_map = data
             
-            # C 代码限制长度必须是 0-255
-            if length > 255:
-                token_bytes = token_bytes[:255]
-                length = 255
-            elif length == 0:
-                token_bytes = b'\0'
-                length = 1 
+    if not vocab_map: 
+        logging.error("JSON 中未找到 vocab 数据")
+        raise ValueError("JSON 中未找到 vocab 数据")
 
+    # 对齐
+    max_id = max(vocab_map.values()) if vocab_map else 0
+    padded_size = ((max_id + 1 + 63) // 64) * 64
+    print(f"Vocab Padded to: {padded_size}")
+    logging.info(f"Original Max ID: {max_id}, Padded Size: {padded_size}")
+
+    # 填充空洞
+    token_list = [None] * padded_size
+    for token, idx in vocab_map.items():
+        if 0 <= idx < padded_size:
+            token_list[idx] = token
+            
+    for i in range(padded_size):
+        if token_list[i] is None:
+            token_list[i] = f"<pad_{i}>"
+
+    # 写入二进制
+    with open(bin_path, 'wb') as f:
+        f.write(struct.pack('<I', 20260123)) 
+        f.write(struct.pack('<I', 1)) 
+        f.write(struct.pack('<I', padded_size)) 
+        f.write(b'LJJ_GPT')
+        f.write(b'\0' * (1024 - 12 - 7)) 
+        
+        logging.info("tokenizer_magic_number: 20260123")
+
+        for token in token_list:
+            b = token.encode('utf-8')
+            length = len(b)
+            if length > 255: length = 255
+            if length == 0: length = 1; b = b'\0'
             f.write(struct.pack('<B', length))
-            f.write(token_bytes)
+            f.write(b[:length])
 
-    print("✅ 词表转换完成！")
+    msg = f"✅ Tokenizer bin 生成完毕: {bin_path}"
+    print(msg)
+    logging.info(msg)
 
 if __name__ == "__main__":
-    # --- 1. 配置路径 (请根据你的实际情况修改) ---
-    TOKENIZER_PATH = "output_tokenizer/threebody_tokenizer.json" # 你刚才生成的json
-    INPUT_FILE = "datasets/三体全集"                         # 你的小说txt
-    OUTPUT_DIR = "output_tokenizer"                         # 准备存放bin文件的目录
-    # 将数据集token id 转换为bin
-    generate_bin()
+    # --- 0. 配置日志 ---
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
+        
+    logging.basicConfig(
+        filename=LOG_FILE,
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        filemode='w' # 每次运行覆盖旧日志，想追加请改为 'a'
+    )
     
-    # 将词表转换为bin
-    output_bin = os.path.join(OUTPUT_DIR, "threebody_tokenizer.bin") # 输出的 BIN 文件路径
+    # 记录当前运行配置
+    logging.info("========================================")
+    logging.info("开始执行数据预处理脚本")
+    logging.info(f"TOKENIZER_JSON: {TOKENIZER_JSON_PATH}")
+    logging.info(f"DATASET_DIR   : {DATASET_DIR}")
+    logging.info(f"OUTPUT_DIR    : {OUTPUT_DIR}")
+    logging.info(f"EOT_TOKEN_ID  : {EOT_TOKEN_ID}")
+    logging.info("========================================")
 
-    if not os.path.exists(TOKENIZER_PATH):
-        print(f"错误: 找不到文件 {TOKENIZER_PATH}")
-    else:
-        try:
-            convert_tokenizer(TOKENIZER_PATH, output_bin)
-        except Exception as e:
-            print(f"转换失败: {e}")
+    # --- 1. 执行任务 ---
+    try:
+        generate_dataset_bin()
+        convert_tokenizer_bin()
+        logging.info("所有任务执行成功！")
+    except Exception as e:
+        logging.critical(f"脚本执行过程中发生致命错误: {e}", exc_info=True)
+        print(f"\n❌ 发生错误，请查看日志文件: {LOG_FILE}")

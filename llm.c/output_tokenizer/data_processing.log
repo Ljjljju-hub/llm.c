@@ -1,0 +1,43 @@
+2026-02-06 20:23:21,218 - INFO - ========================================
+2026-02-06 20:23:21,218 - INFO - 开始执行数据预处理脚本
+2026-02-06 20:23:21,218 - INFO - TOKENIZER_JSON: output_tokenizer/threebody_tokenizer.json
+2026-02-06 20:23:21,218 - INFO - DATASET_DIR   : datasets
+2026-02-06 20:23:21,218 - INFO - OUTPUT_DIR    : output_tokenizer
+2026-02-06 20:23:21,218 - INFO - EOT_TOKEN_ID  : 1
+2026-02-06 20:23:21,218 - INFO - ========================================
+2026-02-06 20:23:21,218 - INFO - >>> 阶段 1/2: 开始生成数据集 bin 文件
+2026-02-06 20:23:21,255 - INFO - Tokenizer 加载成功, Vocab size: 20000
+2026-02-06 20:23:21,256 - INFO - 发现 21 个源文件: ['三体全集.txt', '中国2185.txt', '中国太阳.txt', '乡村教师.txt', '光荣与梦想.txt', '全频段阻塞干扰.txt', '刘慈欣中短篇科幻作品.txt', '吞食者.txt', '圆圆的肥皂泡.txt', '地球大炮.txt', '山.txt', '微纪元.txt', '思想者.txt', '朝闻道.txt', '流浪地球.txt', '白垩纪往事.txt', '西洋.txt', '赡养上帝.txt', '超新星纪元.txt', '镜子.txt', '魔鬼积木.txt']
+2026-02-06 20:23:21,851 - INFO - 文件 三体全集.txt 处理完毕: Train=400473, Val=50059, Test=50060 (Tokens)
+2026-02-06 20:23:21,930 - INFO - 文件 中国2185.txt 处理完毕: Train=39974, Val=4997, Test=4997 (Tokens)
+2026-02-06 20:23:21,944 - INFO - 文件 中国太阳.txt 处理完毕: Train=10599, Val=1325, Test=1325 (Tokens)
+2026-02-06 20:23:21,956 - INFO - 文件 乡村教师.txt 处理完毕: Train=10404, Val=1301, Test=1301 (Tokens)
+2026-02-06 20:23:21,968 - INFO - 文件 光荣与梦想.txt 处理完毕: Train=11572, Val=1447, Test=1447 (Tokens)
+2026-02-06 20:23:21,983 - INFO - 文件 全频段阻塞干扰.txt 处理完毕: Train=13820, Val=1727, Test=1728 (Tokens)
+2026-02-06 20:23:22,043 - INFO - 文件 刘慈欣中短篇科幻作品.txt 处理完毕: Train=57094, Val=7137, Test=7137 (Tokens)
+2026-02-06 20:23:22,055 - INFO - 文件 吞食者.txt 处理完毕: Train=9259, Val=1157, Test=1158 (Tokens)
+2026-02-06 20:23:22,062 - INFO - 文件 圆圆的肥皂泡.txt 处理完毕: Train=5751, Val=719, Test=719 (Tokens)
+2026-02-06 20:23:22,075 - INFO - 文件 地球大炮.txt 处理完毕: Train=11266, Val=1408, Test=1409 (Tokens)
+2026-02-06 20:23:22,085 - INFO - 文件 山.txt 处理完毕: Train=9552, Val=1194, Test=1194 (Tokens)
+2026-02-06 20:23:22,092 - INFO - 文件 微纪元.txt 处理完毕: Train=6576, Val=822, Test=823 (Tokens)
+2026-02-06 20:23:22,097 - INFO - 文件 思想者.txt 处理完毕: Train=5183, Val=648, Test=648 (Tokens)
+2026-02-06 20:23:22,105 - INFO - 文件 朝闻道.txt 处理完毕: Train=7420, Val=928, Test=928 (Tokens)
+2026-02-06 20:23:22,117 - INFO - 文件 流浪地球.txt 处理完毕: Train=10328, Val=1291, Test=1292 (Tokens)
+2026-02-06 20:23:22,131 - INFO - 文件 白垩纪往事.txt 处理完毕: Train=11184, Val=1398, Test=1398 (Tokens)
+2026-02-06 20:23:22,136 - INFO - 文件 西洋.txt 处理完毕: Train=4575, Val=572, Test=572 (Tokens)
+2026-02-06 20:23:22,146 - INFO - 文件 赡养上帝.txt 处理完毕: Train=9678, Val=1210, Test=1210 (Tokens)
+2026-02-06 20:23:22,264 - INFO - 文件 超新星纪元.txt 处理完毕: Train=105723, Val=13215, Test=13216 (Tokens)
+2026-02-06 20:23:22,284 - INFO - 文件 镜子.txt 处理完毕: Train=15338, Val=1917, Test=1918 (Tokens)
+2026-02-06 20:23:22,319 - INFO - 文件 魔鬼积木.txt 处理完毕: Train=33377, Val=4172, Test=4173 (Tokens)
+2026-02-06 20:23:22,340 - INFO - --------------------
+2026-02-06 20:23:22,341 - INFO - 数据集汇总统计:
+2026-02-06 20:23:22,341 - INFO - Total Train Tokens: 789146
+2026-02-06 20:23:22,341 - INFO - Total Val Tokens  : 98644
+2026-02-06 20:23:22,341 - INFO - Total Test Tokens : 98653
+2026-02-06 20:23:22,341 - INFO - Padded Vocab Size : 20032 (C语言参数 -v)
+2026-02-06 20:23:22,341 - INFO - Output files: output_tokenizer/train.bin, output_tokenizer/val.bin, output_tokenizer/test.bin
+2026-02-06 20:23:22,352 - INFO - >>> 阶段 2/2: 开始转换 Tokenizer bin
+2026-02-06 20:23:22,362 - INFO - Original Max ID: 19999, Padded Size: 20032
+2026-02-06 20:23:22,363 - INFO - tokenizer_magic_number: 20260123
+2026-02-06 20:23:22,367 - INFO - ✅ Tokenizer bin 生成完毕: output_tokenizer/threebody_tokenizer.bin
+2026-02-06 20:23:22,367 - INFO - 所有任务执行成功！

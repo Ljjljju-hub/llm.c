@@ -29,6 +29,10 @@ There will be other versions of this code that specialize it and make it fast.
 #include <stdarg.h> // 处理可变参数 (va_list)
 #include <time.h>   // 处理日期和时间
 
+// 在原有的 include 后面添加
+#include <sys/stat.h>
+#include <sys/types.h>
+
 #define M_PI 3.14159265358979323846
 
 // ----------------------------------------------------------------------------
@@ -734,7 +738,7 @@ void gpt2_build_from_checkpoint(GPT2 *model, const char* checkpoint_path, const 
     // ... 错误检查 ...
     int model_header[256];
     fread(model_header, sizeof(int), 256, model_file);  // 读取前 256 个整数
-    if (model_header[0] != 20240326) { printf("Bad magic model file"); exit(1); }   // Magic Number 校验
+    if (model_header[0] != 20260123) { printf("Bad magic model file"); exit(1); }   // Magic Number 校验
     if (model_header[1] != 1) { printf("Bad version in model file"); exit(1); }     // 版本校验
 
     // read in hyperparameters
@@ -1192,7 +1196,7 @@ void dataloader_free(DataLoader *loader) {
 // sampler
 
 // the GPT-2 end-of-text token id
-#define GPT2_EOT 0
+#define GPT2_EOT 1
 
 unsigned int random_u32(unsigned long long *state) {
     // xorshift rng: https://en.wikipedia.org/wiki/Xorshift#xorshift.2A
@@ -1318,7 +1322,7 @@ void gpt2_save(GPT2 *model, const char* filename) {
     // 1. 写入 Header (256个 int)
     // 这里的顺序必须和 Python 里的 write_model 一模一样！
     int header[256] = {0};
-    header[0] = 20240326; // Magic
+    header[0] = 20260123; // Magic
     header[1] = 1;        // Version
     header[2] = model->config.max_seq_len;
     header[3] = model->config.vocab_size;
@@ -1343,7 +1347,8 @@ void print_usage() {
     printf("  -j <path>   Training data bin file (default: output_tokenizer/train.bin)\n");
     printf("  -k <path>   Validation data bin file (default: output_tokenizer/val.bin)\n");
     printf("  -z <path>   Tokenizer bin file (default: output_tokenizer/threebody_tokenizer.bin)\n");
-    printf("  -o <path>   Output model bin file (default: output_model/final_model.bin)\n");
+    // 【修改】明确说明这里只是文件名
+    printf("  -o <name>   Output model filename (default: gpt2_novel.bin). Will be saved in output_model/<timestamp>/\n");
     printf("  -t <int>    Sequence length / context size (default: 64)\n");
     printf("  -b <int>    Batch size (default: 4)\n");
     printf("  -n <int>    Total number of training steps (default: 40)\n");
@@ -1397,7 +1402,12 @@ int main(int argc, char *argv[]) {
     char *train_data_path  = (char*)"output_tokenizer/train.bin";
     char *val_data_path    = (char*)"output_tokenizer/val.bin";
     char *tokenizer_path   = (char*)"output_tokenizer/threebody_tokenizer.bin";
-    char *output_model_path= (char*)"output_model/final_model.bin";
+    // char *output_model_path= (char*)"output_model/gpt2_novel.bin";
+
+    // 【修改 1】这里只存文件名，不再包含路径
+    char *output_model_name = (char*)"gpt2_novel.bin"; 
+    // 【修改 2】固定基础输出目录
+    const char *base_output_dir = "output_model";
 
     int T = 64;      // Sequence length
     int B = 4;       // Batch size
@@ -1414,7 +1424,8 @@ int main(int argc, char *argv[]) {
         else if (strcmp(argv[i], "-j") == 0) { train_data_path = argv[++i]; }
         else if (strcmp(argv[i], "-k") == 0) { val_data_path = argv[++i]; }
         else if (strcmp(argv[i], "-z") == 0) { tokenizer_path = argv[++i]; }
-        else if (strcmp(argv[i], "-o") == 0) { output_model_path = argv[++i]; }
+        // 【修改】将 -o 解析为文件名
+        else if (strcmp(argv[i], "-o") == 0) { output_model_name = argv[++i]; }
         else if (strcmp(argv[i], "-t") == 0) { T = atoi(argv[++i]); }
         else if (strcmp(argv[i], "-b") == 0) { B = atoi(argv[++i]); }
         else if (strcmp(argv[i], "-n") == 0) { num_steps = atoi(argv[++i]); }
@@ -1427,10 +1438,40 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // === 【新增 1】生成日志文件名 ===
-    char log_filename[64];
-    get_date_log_filename(log_filename, sizeof(log_filename));
-    printf("Logging to: %s\n", log_filename);
+    // === 【简化逻辑】创建时间戳目录 ===
+
+    // A. 生成时间字符串 (例如: 2026-02-06_12-30-00)
+    time_t now = time(NULL);
+    struct tm *t_struct = localtime(&now);
+    char timestamp[64];
+    strftime(timestamp, sizeof(timestamp), "%Y-%m-%d_%H-%M-%S", t_struct);
+
+    // B. 拼接完整目录路径: output_model/时间戳
+    char session_dir[512];
+    snprintf(session_dir, sizeof(session_dir), "%s/%s", base_output_dir, timestamp);
+
+    // C. 创建目录
+    char mkdir_cmd[512];
+    snprintf(mkdir_cmd, sizeof(mkdir_cmd), "mkdir -p %s", session_dir);
+    if (system(mkdir_cmd) != 0) {
+        printf("Error: Failed to create dir %s\n", session_dir);
+        exit(1);
+    }
+    printf("Created session dir: %s\n", session_dir);
+
+    // // === 【新增 1】生成日志文件名 ===
+    // char log_filename[64];
+    // get_date_log_filename(log_filename, sizeof(log_filename));
+    // printf("Logging to: %s\n", log_filename);
+
+    // D. 拼接最终文件路径
+    // 1. 日志路径
+    char log_filename[512];
+    snprintf(log_filename, sizeof(log_filename), "%s/train_log.txt", session_dir);
+    
+    // 2. 模型路径
+    char final_model_path[512];
+    snprintf(final_model_path, sizeof(final_model_path), "%s/%s", session_dir, output_model_name);
 
     // 打印当前配置，防止跑错
     // printf("--- Config ---\n");
@@ -1441,7 +1482,7 @@ int main(int argc, char *argv[]) {
     // printf("----------------\n");
     log_message(log_filename, "--- Config ---\n");
     log_message(log_filename, "Logging to: %s\n", log_filename); // 把日志文件名也记进去
-    log_message(log_filename, "Model: %s -> %s\n", input_model_path, output_model_path);
+    log_message(log_filename, "Model: %s -> %s\n", input_model_path, final_model_path);
     log_message(log_filename, "Data : %s (Train), %s (Val)\n", train_data_path, val_data_path);
     log_message(log_filename, "Dims : B=%d, T=%d\n", B, T);
     log_message(log_filename, "Steps: %d (Val every %d)\n", num_steps, val_every);
@@ -1592,16 +1633,16 @@ int main(int argc, char *argv[]) {
             // 我们希望生成: "output_model/final_model_step_100.bin"
             
             // 1. 查找最后一个 '.' (扩展名) 的位置
-            char *dot = strrchr(output_model_path, '.');
+            char *dot = strrchr(final_model_path, '.');
             
             if (dot) {
                 // 计算 '.' 之前的字符长度
-                int base_len = dot - output_model_path;
+                int base_len = dot - final_model_path;
                 // 格式化拼接: "%.*s" (文件名主体) + "_step_%d" (步数) + "%s" (原扩展名)
-                snprintf(ckpt_path, sizeof(ckpt_path), "%.*s_step_%d%s", base_len, output_model_path, step, dot);
+                snprintf(ckpt_path, sizeof(ckpt_path), "%.*s_step_%d%s", base_len, final_model_path, step, dot);
             } else {
                 // 如果文件名没有扩展名 (比如 just "model")，直接追加
-                snprintf(ckpt_path, sizeof(ckpt_path), "%s_step_%d", output_model_path, step);
+                snprintf(ckpt_path, sizeof(ckpt_path), "%s_step_%d", final_model_path, step);
             }
             
             gpt2_save(&model, ckpt_path);
@@ -1637,7 +1678,7 @@ int main(int argc, char *argv[]) {
     }
 
     // 保存最终模型
-    gpt2_save(&model, output_model_path);
+    gpt2_save(&model, final_model_path);
 
     // free
     dataloader_free(&train_loader);
